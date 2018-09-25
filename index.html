@@ -1,154 +1,403 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
-	<link rel="stylesheet" href="jenkins-design-language.css"/>
-	<link rel="stylesheet" href="extensions.css"/>
-	<style type="text/css">
-		.circle-edit {
-			stroke: #3a70b0 !important;
-		}
-	</style>
+    <title></title>
+    <link rel="stylesheet" href="jenkins-design-language.css"/>
+    <link rel="stylesheet" href="extensions.css"/>
+    <style type="text/css">
+        .circle-edit {
+            stroke: #3a70b0 !important;
+        }
+    </style>
 </head>
 <body>
-<svg class="svgResultStatus " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" focusable="false"><title>success</title><g transform="translate(12 12) "><g class="svgResultStatus"><circle cx="0" cy="0" r="12" class="circle-bg success"></circle><g class="result-status-glyph"><polygon points="-2.00 2.80 -4.80 0.00 -5.73 0.933 -2.00 4.67 6.00 -3.33 5.07 -4.27"></polygon></g></g></g></svg>
+<svg class="svgResultStatus " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32"
+     focusable="false"><title>success</title>
+    <g transform="translate(12 12) ">
+        <g class="svgResultStatus">
+            <circle cx="0" cy="0" r="12" class="circle-bg success"></circle>
+            <g class="result-status-glyph">
+                <polygon points="-2.00 2.80 -4.80 0.00 -5.73 0.933 -2.00 4.67 6.00 -3.33 5.07 -4.27"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>
 
-<svg class="svgResultStatus " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" focusable="false"><title>running</title><g transform="translate(12 12) "><g class="progress-spinner running"><circle cx="0" cy="0" r="10.25" stroke-width="3.5"></circle><circle class="inner" cx="0" cy="0" r="3.4166666666666665"></circle><path class="running" fill="none" stroke-width="3.5" d="M 6.276314845630185e-16 10.25 A 10.25 10.25 0 0 0 6.276314845630185e-16 -10.25"></path></g></g></svg>
+<svg class="svgResultStatus " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32"
+     focusable="false"><title>running</title>
+    <g transform="translate(12 12) ">
+        <g class="progress-spinner running">
+            <circle cx="0" cy="0" r="10.25" stroke-width="3.5"></circle>
+            <circle class="inner" cx="0" cy="0" r="3.4166666666666665"></circle>
+            <path class="running" fill="none" stroke-width="3.5"
+                  d="M 6.276314845630185e-16 10.25 A 10.25 10.25 0 0 0 6.276314845630185e-16 -10.25"></path>
+        </g>
+    </g>
+</svg>
 
-<svg class="svgResultStatus " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" focusable="false"><title>not_built</title><g transform="translate(12 12) "><g class="progress-spinner not_built"><circle cx="0" cy="0" r="10.25" class="circle-edit" stroke-width="3.5"></circle><circle class="inner" cx="0" cy="0" r="3.4166666666666665"></circle></g></g></svg>
+<svg class="svgResultStatus " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32"
+     focusable="false"><title>not_built</title>
+    <g transform="translate(12 12) ">
+        <g class="progress-spinner not_built">
+            <circle cx="0" cy="0" r="10.25" class="circle-edit" stroke-width="3.5"></circle>
+            <circle class="inner" cx="0" cy="0" r="3.4166666666666665"></circle>
+        </g>
+    </g>
+</svg>
 
-<svg class="svgResultStatus " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" focusable="false"><title>not_built</title><g transform="translate(12 12) "><g class="progress-spinner not_built"><circle cx="0" cy="0" r="10.25" stroke-width="3.5"></circle><circle class="inner" cx="0" cy="0" r="3.4166666666666665"></circle></g></g></svg>
+<svg class="svgResultStatus " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32"
+     focusable="false"><title>not_built</title>
+    <g transform="translate(12 12) ">
+        <g class="progress-spinner not_built">
+            <circle cx="0" cy="0" r="10.25" stroke-width="3.5"></circle>
+            <circle class="inner" cx="0" cy="0" r="3.4166666666666665"></circle>
+        </g>
+    </g>
+</svg>
 
- <div class="pipeline-editor">
-  		<svg class="editor-graph-svg" width="300" height="155"><path class="pipeline-connector placeholder" stroke-width="3.2" d="M 30 60 l 60 0 c 12 0 12 12 12 12 l 0 46 c 0 12 12 12 12 12 l 36 0" fill="none"></path><line class="pipeline-connector" stroke-width="3.2" x1="30" y1="60" x2="150" y2="60"></line><line class="pipeline-connector placeholder" stroke-width="3.2" x1="150" y1="60" x2="270" y2="60"></line><g transform="translate(30,60)" class="editor-graph-nodegroup"><circle r="7.5" class="start-node" stroke="none"></circle><circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-1-start" fill-opacity="0" stroke="none"></circle></g><g transform="translate(150,130)" class="editor-graph-nodegroup"><g><circle class="editor-add-node-placeholder" r="11" stroke-width="1.7"></circle><g class="result-status-glyph" transform="rotate(45)"><polygon points="4.67 -3.73 3.73 -4.67 0 -0.94 -3.73 -4.67 -4.67 -3.73 -0.94 0 -4.67 3.73 -3.73 4.67 0 0.94 3.73 4.67 4.67 3.73 0.94 0"></polygon></g></g><circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-2-add" fill-opacity="0" stroke="none"></circle></g><g transform="translate(150,60)" class="editor-graph-nodegroup errors selected"><g><circle class="editor-graph-node" r="12.5"></circle><circle class="editor-graph-node-inner" r="9.3"></circle></g><svg class="alerticon" width="20px" height="20px" viewBox="13 9 20 20"><defs><path d="M8.0197096,1.74273849 C8.56110904,0.780250597 9.44018119,0.782544345 9.9802904,1.74273849 L17.0197096,14.2572615 C17.561109,15.2197494 17.1073772,16 16.0049107,16 L1.99508929,16 C0.893231902,16 0.440181194,15.2174557 0.980290398,14.2572615 L8.0197096,1.74273849 Z" id="path-1"></path><mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="20" height="20"><rect x="0" y="0" width="20" height="20" fill="white"></rect><use xlink:href="#path-1" fill="black"></use></mask><rect id="path-3" x="8" y="6" width="2" height="4"></rect><mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="2" height="4" fill="white"><use xlink:href="#path-3"></use></mask><rect id="path-5" x="8" y="12" width="2" height="2"></rect><mask id="mask-6" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="2" height="2" fill="white"><use xlink:href="#path-5"></use></mask></defs><g id="Group-10" stroke="none" stroke-width="1" fill="none" transform="translate(15, 9)"><g id="Triangle-2"><use fill="#CE373A" xlink:href="#path-1"></use><use stroke="#FFFFFF" mask="url(#mask-2)" stroke-width="2" xlink:href="#path-1"></use></g><use id="Rectangle-17" stroke="#FFFFFF" mask="url(#mask-4)" stroke-width="2" fill="#D8D8D8" xlink:href="#path-3"></use><use id="Rectangle-17-Copy" stroke="#FFFFFF" mask="url(#mask-6)" stroke-width="2" fill="#D8D8D8" xlink:href="#path-5"></use></g></svg><circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-1" fill-opacity="0" stroke="none"></circle></g><g transform="translate(270,60)" class="editor-graph-nodegroup"><g><circle class="editor-add-node-placeholder" r="11" stroke-width="1.7"></circle><g class="result-status-glyph" transform="rotate(45)"><polygon points="4.67 -3.73 3.73 -4.67 0 -0.94 -3.73 -4.67 -4.67 -3.73 -0.94 0 -4.67 3.73 -3.73 4.67 0 0.94 3.73 4.67 4.67 3.73 0.94 0"></polygon></g></g><circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-3-add" fill-opacity="0" stroke="none"></circle></g></svg>
-
-<div style="position: relative; overflow: visible; margin: 30px auto;"><svg class="editor-graph-svg" width="300" height="225"><path class="pipeline-connector placeholder" stroke-width="3.2" d="M 30 60 l 60 0 c 12 0 12 12 12 12 l 0 116 c 0 12 12 12 12 12 l 36 0" fill="none"></path><line class="pipeline-connector" stroke-width="3.2" x1="30" y1="60" x2="150" y2="60"></line><path class="pipeline-connector" stroke-width="3.2" d="M 30 60 l 60 0 c 12 0 12 12 12 12 l 0 46 c 0 12 12 12 12 12 l 36 0" fill="none"></path><line class="pipeline-connector placeholder" stroke-width="3.2" x1="150" y1="60" x2="270" y2="60"></line><g transform="translate(30,60)" class="editor-graph-nodegroup"><circle r="7.5" class="start-node" stroke="none"></circle><circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-1-start" fill-opacity="0" stroke="none"></circle></g><g transform="translate(150,200)" class="editor-graph-nodegroup"><g><circle class="editor-add-node-placeholder" r="11" stroke-width="1.7"></circle><g class="result-status-glyph" transform="rotate(45)"><polygon points="4.67 -3.73 3.73 -4.67 0 -0.94 -3.73 -4.67 -4.67 -3.73 -0.94 0 -4.67 3.73 -3.73 4.67 0 0.94 3.73 4.67 4.67 3.73 0.94 0"></polygon></g></g><circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-2-add" fill-opacity="0" stroke="none"></circle></g><g transform="translate(150,60)" class="editor-graph-nodegroup"><g><circle class="editor-graph-node" r="12.5"></circle><circle class="editor-graph-node-inner" r="9.3"></circle></g><circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-4" fill-opacity="0" stroke="none"></circle></g><g transform="translate(150,130)" class="editor-graph-nodegroup selected errors"><g><circle class="editor-graph-node" r="12.5"></circle><circle class="editor-graph-node-inner" r="9.3"></circle></g><svg class="alerticon" width="20px" height="20px" viewBox="13 9 20 20"><defs><path d="M8.0197096,1.74273849 C8.56110904,0.780250597 9.44018119,0.782544345 9.9802904,1.74273849 L17.0197096,14.2572615 C17.561109,15.2197494 17.1073772,16 16.0049107,16 L1.99508929,16 C0.893231902,16 0.440181194,15.2174557 0.980290398,14.2572615 L8.0197096,1.74273849 Z" id="path-1"></path><mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="20" height="20"><rect x="0" y="0" width="20" height="20" fill="white"></rect><use xlink:href="#path-1" fill="black"></use></mask><rect id="path-3" x="8" y="6" width="2" height="4"></rect><mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="2" height="4" fill="white"><use xlink:href="#path-3"></use></mask><rect id="path-5" x="8" y="12" width="2" height="2"></rect><mask id="mask-6" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="2" height="2" fill="white"><use xlink:href="#path-5"></use></mask></defs><g id="Group-10" stroke="none" stroke-width="1" fill="none" transform="translate(15, 9)"><g id="Triangle-2"><use fill="#CE373A" xlink:href="#path-1"></use><use stroke="#FFFFFF" mask="url(#mask-2)" stroke-width="2" xlink:href="#path-1"></use></g><use id="Rectangle-17" stroke="#FFFFFF" mask="url(#mask-4)" stroke-width="2" fill="#D8D8D8" xlink:href="#path-3"></use><use id="Rectangle-17-Copy" stroke="#FFFFFF" mask="url(#mask-6)" stroke-width="2" fill="#D8D8D8" xlink:href="#path-5"></use></g></svg><circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-3" fill-opacity="0" stroke="none"></circle></g><g transform="translate(270,60)" class="editor-graph-nodegroup"><g><circle class="editor-add-node-placeholder" r="11" stroke-width="1.7"></circle><g class="result-status-glyph" transform="rotate(45)"><polygon points="4.67 -3.73 3.73 -4.67 0 -0.94 -3.73 -4.67 -4.67 -3.73 -0.94 0 -4.67 3.73 -3.73 4.67 0 0.94 3.73 4.67 4.67 3.73 0.94 0"></polygon></g></g><circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-3-add" fill-opacity="0" stroke="none"></circle></g></svg><div class="pipeline-big-label top-level-parallel" data-stagename="abcde" style="width: 120px; margin-left: -60px; margin-bottom: 21px; bottom: 165px; left: 150px;"><svg icon="NavigationMoreHoriz" focusable="false" class="svg-icon" viewBox="0 0 24 24" style="height: 24px; width: 24px;"><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg><svg icon="NavigationMoreHoriz" focusable="false" class="svg-icon" viewBox="0 0 24 24" style="height: 24px; width: 24px;"><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg></div><div class="pipeline-small-label" style="position: absolute; width: 96px; text-align: center; margin-left: -48px; margin-top: 20px; top: 60px; left: 30px;">Start</div><div class="pipeline-small-label" style="position: absolute; width: 96px; text-align: center; margin-left: -48px; margin-top: 20px; top: 60px; left: 150px;">abcde</div><div class="pipeline-small-label errors" style="position: absolute; width: 96px; text-align: center; margin-left: -48px; margin-top: 20px; top: 130px; left: 150px;"></div></div>
-
- 	<div style="position: relative; overflow: visible; margin: 30px auto; transform: scale(1.79454)">
-    <svg class="editor-graph-svg" width="420" height="325">
-        <path class="pipeline-connector placeholder" stroke-width="3.2" 
-        d="M 30 60 
-           l 60 0 
-           c 12 0 12 12 12 12 
-           l 0 116 
-           c 0 12 12 12 12 12 
-           l 36 0" fill="none"></path>
-        <path class="pipeline-connector placeholder" stroke-width="3.2" 
-        d="M 30 60 
-           l 60 0 
-           c 12 0 12 12 12 12 
-           l 0 186
-           c 0 12 12 12 12 12 
-           l 36 0" fill="none"></path>
+<div class="pipeline-editor">
+    <svg class="editor-graph-svg" width="300" height="155">
+        <path class="pipeline-connector placeholder" stroke-width="3.2"
+              d="M 30 60 l 60 0 c 12 0 12 12 12 12 l 0 46 c 0 12 12 12 12 12 l 36 0" fill="none"></path>
         <line class="pipeline-connector" stroke-width="3.2" x1="30" y1="60" x2="150" y2="60"></line>
-        <path class="pipeline-connector" stroke-width="3.2" 
-        d="M 30 60 
-           l 60 0 
-           c 12 0 12 12 12 12 
-           l 0 46 
-           c 0 12 12 12 12 12 
-           l 36 0" fill="none"></path>
-        <path class="pipeline-connector placeholder" stroke-width="3.2" 
-        d="M 150 60 
-           l 60 0 
-           c 12 0 12 12 12 12 
-           l 0 46 
-           c 0 12 12 12 12 12 
-           l 36 0" fill="none"></path>
-        <line class="pipeline-connector" stroke-width="3.2" x1="150" y1="60" x2="270" y2="60"></line>
-        <path class="pipeline-connector" stroke-width="3.2" d="M 150 130 l 36 0 c 12 0 12 -12 12 -12 l 0 -46 c 0 -12 12 -12 12 -12 l 60 0" fill="none"></path>
-        <line class="pipeline-connector placeholder" stroke-width="3.2" x1="270" y1="60" x2="390" y2="60"></line>
+        <line class="pipeline-connector placeholder" stroke-width="3.2" x1="150" y1="60" x2="270" y2="60"></line>
         <g transform="translate(30,60)" class="editor-graph-nodegroup">
             <circle r="7.5" class="start-node" stroke="none"></circle>
-            <circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-1-start" fill-opacity="0" stroke="none"></circle>
-        </g>
-        <g transform="translate(150,200)" class="editor-graph-nodegroup">
-            <g>
-                <circle class="editor-add-node-placeholder" r="11" stroke-width="1.7"></circle>
-                <g class="result-status-glyph" transform="rotate(45)">
-                    <polygon points="4.67 -3.73 3.73 -4.67 0 -0.94 -3.73 -4.67 -4.67 -3.73 -0.94 0 -4.67 3.73 -3.73 4.67 0 0.94 3.73 4.67 4.67 3.73 0.94 0"></polygon>
-                </g>
-            </g>
-            <circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-2-add" fill-opacity="0" stroke="none"></circle>
-        </g>
-
-        <g transform="translate(150,270)" class="editor-graph-nodegroup">
-            <g>
-                <circle class="editor-add-node-placeholder" r="11" stroke-width="1.7"></circle>
-                <g class="result-status-glyph" transform="rotate(45)">
-                    <polygon points="4.67 -3.73 3.73 -4.67 0 -0.94 -3.73 -4.67 -4.67 -3.73 -0.94 0 -4.67 3.73 -3.73 4.67 0 0.94 3.73 4.67 4.67 3.73 0.94 0"></polygon>
-                </g>
-            </g>
-            <circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-2-add" fill-opacity="0" stroke="none"></circle>
-        </g>
-
-        <g transform="translate(150,60)" class="editor-graph-nodegroup errors">
-            <g>
-                <circle class="editor-graph-node" r="12.5"></circle>
-                <circle class="editor-graph-node-inner" r="9.3"></circle>
-            </g>
-            <circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-4" fill-opacity="0" stroke="none"></circle>
+            <circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-1-start"
+                    fill-opacity="0" stroke="none"></circle>
         </g>
         <g transform="translate(150,130)" class="editor-graph-nodegroup">
             <g>
-                <circle class="editor-graph-node" r="12.5"></circle>
-                <circle class="editor-graph-node-inner" r="9.3"></circle>
-            </g>
-            <circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-3" fill-opacity="0" stroke="none"></circle>
-        </g>
-        <g transform="translate(270,130)" class="editor-graph-nodegroup">
-            <g>
                 <circle class="editor-add-node-placeholder" r="11" stroke-width="1.7"></circle>
                 <g class="result-status-glyph" transform="rotate(45)">
-                    <polygon points="4.67 -3.73 3.73 -4.67 0 -0.94 -3.73 -4.67 -4.67 -3.73 -0.94 0 -4.67 3.73 -3.73 4.67 0 0.94 3.73 4.67 4.67 3.73 0.94 0"></polygon>
+                    <polygon
+                            points="4.67 -3.73 3.73 -4.67 0 -0.94 -3.73 -4.67 -4.67 -3.73 -0.94 0 -4.67 3.73 -3.73 4.67 0 0.94 3.73 4.67 4.67 3.73 0.94 0"></polygon>
                 </g>
             </g>
-            <circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-3-add" fill-opacity="0" stroke="none"></circle>
+            <circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-2-add"
+                    fill-opacity="0" stroke="none"></circle>
         </g>
-        <g transform="translate(270,60)" class="editor-graph-nodegroup selected">
+        <g transform="translate(150,60)" class="editor-graph-nodegroup errors selected">
             <g>
                 <circle class="editor-graph-node" r="12.5"></circle>
                 <circle class="editor-graph-node-inner" r="9.3"></circle>
             </g>
-            <circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-6" fill-opacity="0" stroke="none"></circle>
+            <svg class="alerticon" width="20px" height="20px" viewBox="13 9 20 20">
+                <defs>
+                    <path d="M8.0197096,1.74273849 C8.56110904,0.780250597 9.44018119,0.782544345 9.9802904,1.74273849 L17.0197096,14.2572615 C17.561109,15.2197494 17.1073772,16 16.0049107,16 L1.99508929,16 C0.893231902,16 0.440181194,15.2174557 0.980290398,14.2572615 L8.0197096,1.74273849 Z"
+                          id="path-1"></path>
+                    <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0"
+                          width="20" height="20">
+                        <rect x="0" y="0" width="20" height="20" fill="white"></rect>
+                        <use xlink:href="#path-1" fill="black"></use>
+                    </mask>
+                    <rect id="path-3" x="8" y="6" width="2" height="4"></rect>
+                    <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0"
+                          width="2" height="4" fill="white">
+                        <use xlink:href="#path-3"></use>
+                    </mask>
+                    <rect id="path-5" x="8" y="12" width="2" height="2"></rect>
+                    <mask id="mask-6" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0"
+                          width="2" height="2" fill="white">
+                        <use xlink:href="#path-5"></use>
+                    </mask>
+                </defs>
+                <g id="Group-10" stroke="none" stroke-width="1" fill="none" transform="translate(15, 9)">
+                    <g id="Triangle-2">
+                        <use fill="#CE373A" xlink:href="#path-1"></use>
+                        <use stroke="#FFFFFF" mask="url(#mask-2)" stroke-width="2" xlink:href="#path-1"></use>
+                    </g>
+                    <use id="Rectangle-17" stroke="#FFFFFF" mask="url(#mask-4)" stroke-width="2" fill="#D8D8D8"
+                         xlink:href="#path-3"></use>
+                    <use id="Rectangle-17-Copy" stroke="#FFFFFF" mask="url(#mask-6)" stroke-width="2" fill="#D8D8D8"
+                         xlink:href="#path-5"></use>
+                </g>
+            </svg>
+            <circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-1"
+                    fill-opacity="0" stroke="none"></circle>
         </g>
-        <g transform="translate(390,60)" class="editor-graph-nodegroup">
+        <g transform="translate(270,60)" class="editor-graph-nodegroup">
             <g>
                 <circle class="editor-add-node-placeholder" r="11" stroke-width="1.7"></circle>
                 <g class="result-status-glyph" transform="rotate(45)">
-                    <polygon points="4.67 -3.73 3.73 -4.67 0 -0.94 -3.73 -4.67 -4.67 -3.73 -0.94 0 -4.67 3.73 -3.73 4.67 0 0.94 3.73 4.67 4.67 3.73 0.94 0"></polygon>
+                    <polygon
+                            points="4.67 -3.73 3.73 -4.67 0 -0.94 -3.73 -4.67 -4.67 -3.73 -0.94 0 -4.67 3.73 -3.73 4.67 0 0.94 3.73 4.67 4.67 3.73 0.94 0"></polygon>
                 </g>
             </g>
-            <circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-4-add" fill-opacity="0" stroke="none"></circle>
+            <circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-3-add"
+                    fill-opacity="0" stroke="none"></circle>
         </g>
     </svg>
-    <div class="pipeline-big-label top-level-parallel" data-stagename="abcde" style="width: 120px; margin-left: -60px; margin-bottom: 21px; bottom: 265px; left: 150px;">
-        <!-- react-text: 610 -->abcde<!-- /react-text -->
-        <svg icon="NavigationMoreHoriz" focusable="false" class="svg-icon" viewBox="0 0 24 24" style="height: 24px; width: 24px;">
-            <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+
+    <div style="position: relative; overflow: visible; margin: 30px auto;">
+        <svg class="editor-graph-svg" width="300" height="225">
+            <path class="pipeline-connector placeholder" stroke-width="3.2"
+                  d="M 30 60 l 60 0 c 12 0 12 12 12 12 l 0 116 c 0 12 12 12 12 12 l 36 0" fill="none"></path>
+            <line class="pipeline-connector" stroke-width="3.2" x1="30" y1="60" x2="150" y2="60"></line>
+            <path class="pipeline-connector" stroke-width="3.2"
+                  d="M 30 60 l 60 0 c 12 0 12 12 12 12 l 0 46 c 0 12 12 12 12 12 l 36 0" fill="none"></path>
+            <line class="pipeline-connector placeholder" stroke-width="3.2" x1="150" y1="60" x2="270" y2="60"></line>
+            <g transform="translate(30,60)" class="editor-graph-nodegroup">
+                <circle r="7.5" class="start-node" stroke="none"></circle>
+                <circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-1-start"
+                        fill-opacity="0" stroke="none"></circle>
+            </g>
+            <g transform="translate(150,200)" class="editor-graph-nodegroup">
+                <g>
+                    <circle class="editor-add-node-placeholder" r="11" stroke-width="1.7"></circle>
+                    <g class="result-status-glyph" transform="rotate(45)">
+                        <polygon
+                                points="4.67 -3.73 3.73 -4.67 0 -0.94 -3.73 -4.67 -4.67 -3.73 -0.94 0 -4.67 3.73 -3.73 4.67 0 0.94 3.73 4.67 4.67 3.73 0.94 0"></polygon>
+                    </g>
+                </g>
+                <circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-2-add"
+                        fill-opacity="0" stroke="none"></circle>
+            </g>
+            <g transform="translate(150,60)" class="editor-graph-nodegroup">
+                <g>
+                    <circle class="editor-graph-node" r="12.5"></circle>
+                    <circle class="editor-graph-node-inner" r="9.3"></circle>
+                </g>
+                <circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-4"
+                        fill-opacity="0" stroke="none"></circle>
+            </g>
+            <g transform="translate(150,130)" class="editor-graph-nodegroup selected errors">
+                <g>
+                    <circle class="editor-graph-node" r="12.5"></circle>
+                    <circle class="editor-graph-node-inner" r="9.3"></circle>
+                </g>
+                <svg class="alerticon" width="20px" height="20px" viewBox="13 9 20 20">
+                    <defs>
+                        <path d="M8.0197096,1.74273849 C8.56110904,0.780250597 9.44018119,0.782544345 9.9802904,1.74273849 L17.0197096,14.2572615 C17.561109,15.2197494 17.1073772,16 16.0049107,16 L1.99508929,16 C0.893231902,16 0.440181194,15.2174557 0.980290398,14.2572615 L8.0197096,1.74273849 Z"
+                              id="path-1"></path>
+                        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0"
+                              width="20" height="20">
+                            <rect x="0" y="0" width="20" height="20" fill="white"></rect>
+                            <use xlink:href="#path-1" fill="black"></use>
+                        </mask>
+                        <rect id="path-3" x="8" y="6" width="2" height="4"></rect>
+                        <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0"
+                              width="2" height="4" fill="white">
+                            <use xlink:href="#path-3"></use>
+                        </mask>
+                        <rect id="path-5" x="8" y="12" width="2" height="2"></rect>
+                        <mask id="mask-6" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0"
+                              width="2" height="2" fill="white">
+                            <use xlink:href="#path-5"></use>
+                        </mask>
+                    </defs>
+                    <g id="Group-10" stroke="none" stroke-width="1" fill="none" transform="translate(15, 9)">
+                        <g id="Triangle-2">
+                            <use fill="#CE373A" xlink:href="#path-1"></use>
+                            <use stroke="#FFFFFF" mask="url(#mask-2)" stroke-width="2" xlink:href="#path-1"></use>
+                        </g>
+                        <use id="Rectangle-17" stroke="#FFFFFF" mask="url(#mask-4)" stroke-width="2" fill="#D8D8D8"
+                             xlink:href="#path-3"></use>
+                        <use id="Rectangle-17-Copy" stroke="#FFFFFF" mask="url(#mask-6)" stroke-width="2" fill="#D8D8D8"
+                             xlink:href="#path-5"></use>
+                    </g>
+                </svg>
+                <circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-3"
+                        fill-opacity="0" stroke="none"></circle>
+            </g>
+            <g transform="translate(270,60)" class="editor-graph-nodegroup">
+                <g>
+                    <circle class="editor-add-node-placeholder" r="11" stroke-width="1.7"></circle>
+                    <g class="result-status-glyph" transform="rotate(45)">
+                        <polygon
+                                points="4.67 -3.73 3.73 -4.67 0 -0.94 -3.73 -4.67 -4.67 -3.73 -0.94 0 -4.67 3.73 -3.73 4.67 0 0.94 3.73 4.67 4.67 3.73 0.94 0"></polygon>
+                    </g>
+                </g>
+                <circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-3-add"
+                        fill-opacity="0" stroke="none"></circle>
+            </g>
         </svg>
-        <svg icon="NavigationMoreHoriz" focusable="false" class="svg-icon" viewBox="0 0 24 24" style="height: 24px; width: 24px;">
-            <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+        <div class="pipeline-big-label top-level-parallel" data-stagename="abcde"
+             style="width: 120px; margin-left: -60px; margin-bottom: 21px; bottom: 165px; left: 150px;">
+            <svg icon="NavigationMoreHoriz" focusable="false" class="svg-icon" viewBox="0 0 24 24"
+                 style="height: 24px; width: 24px;">
+                <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+            </svg>
+            <svg icon="NavigationMoreHoriz" focusable="false" class="svg-icon" viewBox="0 0 24 24"
+                 style="height: 24px; width: 24px;">
+                <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+            </svg>
+        </div>
+        <div class="pipeline-small-label"
+             style="position: absolute; width: 96px; text-align: center; margin-left: -48px; margin-top: 20px; top: 60px; left: 30px;">
+            Start
+        </div>
+        <div class="pipeline-small-label"
+             style="position: absolute; width: 96px; text-align: center; margin-left: -48px; margin-top: 20px; top: 60px; left: 150px;">
+            abcde
+        </div>
+        <div class="pipeline-small-label errors"
+             style="position: absolute; width: 96px; text-align: center; margin-left: -48px; margin-top: 20px; top: 130px; left: 150px;"></div>
+    </div>
+
+    <div style="position: relative; overflow: visible; margin: 30px auto; transform: scale(1.4)">
+        <svg class="editor-graph-svg" width="420" height="325">
+            <path class="pipeline-connector placeholder" stroke-width="3.2"
+                  d="M 30 60
+           l 60 0
+           c 12 0 12 12 12 12
+           l 0 116
+           c 0 12 12 12 12 12
+           l 36 0" fill="none"></path>
+            <path class="pipeline-connector placeholder" stroke-width="3.2"
+                  d="M 30 60
+           l 60 0
+           c 12 0 12 12 12 12
+           l 0 186
+           c 0 12 12 12 12 12
+           l 36 0" fill="none"></path>
+            <line class="pipeline-connector" stroke-width="3.2" x1="30" y1="60" x2="150" y2="60"></line>
+            <path class="pipeline-connector" stroke-width="3.2"
+                  d="M 30 60
+           l 60 0
+           c 12 0 12 12 12 12
+           l 0 46
+           c 0 12 12 12 12 12
+           l 36 0" fill="none"></path>
+            <path class="pipeline-connector placeholder" stroke-width="3.2"
+                  d="M 150 60
+           l 60 0
+           c 12 0 12 12 12 12
+           l 0 46
+           c 0 12 12 12 12 12
+           l 36 0" fill="none"></path>
+            <line class="pipeline-connector" stroke-width="3.2" x1="150" y1="60" x2="270" y2="60"></line>
+            <path class="pipeline-connector" stroke-width="3.2"
+                  d="M 150 130 l 36 0 c 12 0 12 -12 12 -12 l 0 -46 c 0 -12 12 -12 12 -12 l 60 0" fill="none"></path>
+            <line class="pipeline-connector placeholder" stroke-width="3.2" x1="270" y1="60" x2="390" y2="60"></line>
+            <g transform="translate(30,60)" class="editor-graph-nodegroup">
+                <circle r="7.5" class="start-node" stroke="none"></circle>
+                <circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-1-start"
+                        fill-opacity="0" stroke="none"></circle>
+            </g>
+            <g transform="translate(150,200)" class="editor-graph-nodegroup">
+                <g>
+                    <circle class="editor-add-node-placeholder" r="11" stroke-width="1.7"></circle>
+                    <g class="result-status-glyph" transform="rotate(45)">
+                        <polygon
+                                points="4.67 -3.73 3.73 -4.67 0 -0.94 -3.73 -4.67 -4.67 -3.73 -0.94 0 -4.67 3.73 -3.73 4.67 0 0.94 3.73 4.67 4.67 3.73 0.94 0"></polygon>
+                    </g>
+                </g>
+                <circle onclick='console.log("click here")' r="18.9" cursor="pointer" class="pipeline-node-hittarget"
+                        id="pipeline-node-hittarget-2-add" fill-opacity="0" stroke="none"></circle>
+            </g>
+
+            <g transform="translate(150,270)" class="editor-graph-nodegroup">
+                <g>
+                    <circle class="editor-add-node-placeholder" r="11" stroke-width="1.7"></circle>
+                    <g class="result-status-glyph" transform="rotate(45)">
+                        <polygon
+                                points="4.67 -3.73 3.73 -4.67 0 -0.94 -3.73 -4.67 -4.67 -3.73 -0.94 0 -4.67 3.73 -3.73 4.67 0 0.94 3.73 4.67 4.67 3.73 0.94 0"></polygon>
+                    </g>
+                </g>
+                <circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-2-add"
+                        fill-opacity="0" stroke="none"></circle>
+            </g>
+
+            <g transform="translate(150,60)" class="editor-graph-nodegroup errors">
+                <g>
+                    <circle class="editor-graph-node" r="12.5"></circle>
+                    <circle class="editor-graph-node-inner" r="9.3"></circle>
+                </g>
+                <circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-4"
+                        fill-opacity="0" stroke="none"></circle>
+            </g>
+            <g transform="translate(150,130)" class="editor-graph-nodegroup">
+                <g>
+                    <circle class="editor-graph-node" r="12.5"></circle>
+                    <circle class="editor-graph-node-inner" r="9.3"></circle>
+                </g>
+                <circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-3"
+                        fill-opacity="0" stroke="none"></circle>
+            </g>
+            <g transform="translate(270,130)" class="editor-graph-nodegroup">
+                <g>
+                    <circle class="editor-add-node-placeholder" r="11" stroke-width="1.7"></circle>
+                    <g class="result-status-glyph" transform="rotate(45)">
+                        <polygon
+                                points="4.67 -3.73 3.73 -4.67 0 -0.94 -3.73 -4.67 -4.67 -3.73 -0.94 0 -4.67 3.73 -3.73 4.67 0 0.94 3.73 4.67 4.67 3.73 0.94 0"></polygon>
+                    </g>
+                </g>
+                <circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-3-add"
+                        fill-opacity="0" stroke="none"></circle>
+            </g>
+            <g transform="translate(270,60)" class="editor-graph-nodegroup selected">
+                <g>
+                    <circle class="editor-graph-node" r="12.5"></circle>
+                    <circle class="editor-graph-node-inner" r="9.3"></circle>
+                </g>
+                <circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-6"
+                        fill-opacity="0" stroke="none"></circle>
+            </g>
+            <g transform="translate(390,60)" class="editor-graph-nodegroup">
+                <g>
+                    <circle class="editor-add-node-placeholder" r="11" stroke-width="1.7"></circle>
+                    <g class="result-status-glyph" transform="rotate(45)">
+                        <polygon
+                                points="4.67 -3.73 3.73 -4.67 0 -0.94 -3.73 -4.67 -4.67 -3.73 -0.94 0 -4.67 3.73 -3.73 4.67 0 0.94 3.73 4.67 4.67 3.73 0.94 0"></polygon>
+                    </g>
+                </g>
+                <circle r="18.9" cursor="pointer" class="pipeline-node-hittarget" id="pipeline-node-hittarget-4-add"
+                        fill-opacity="0" stroke="none"></circle>
+            </g>
         </svg>
+        <div class="pipeline-big-label top-level-parallel" data-stagename="abcde"
+             style="width: 120px; margin-left: -60px; margin-bottom: 21px; bottom: 265px; left: 150px;">
+            <!-- react-text: 610 -->abcde<!-- /react-text -->
+            <svg icon="NavigationMoreHoriz" focusable="false" class="svg-icon" viewBox="0 0 24 24"
+                 style="height: 24px; width: 24px;">
+                <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+            </svg>
+            <svg icon="NavigationMoreHoriz" focusable="false" class="svg-icon" viewBox="0 0 24 24"
+                 style="height: 24px; width: 24px;">
+                <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+            </svg>
+        </div>
+        <div class="pipeline-big-label selected" data-stagename="2aaa"
+             style="width: 120px; margin-left: -60px; margin-bottom: 21px; bottom: 265px; left: 270px;">
+            <!-- react-text: 1367 -->2aaa
+            <!-- /react-text -->
+        </div>
+        <div class="pipeline-small-label"
+             style="position: absolute; width: 96px; text-align: center; margin-left: -48px; margin-top: 20px; top: 60px; left: 30px;">
+            Start
+        </div>
+        <div class="pipeline-small-label"
+             style="position: absolute; width: 96px; text-align: center; margin-left: -48px; margin-top: 20px; top: 60px; left: 150px;">
+            abcde
+        </div>
+        <div class="pipeline-small-label"
+             style="position: absolute; width: 96px; text-align: center; margin-left: -48px; margin-top: 20px; top: 130px; left: 150px;">
+            small-label
+        </div>
     </div>
-    <div class="pipeline-big-label selected" data-stagename="2aaa" style="width: 120px; margin-left: -60px; margin-bottom: 21px; bottom: 265px; left: 270px;">
-        <!-- react-text: 1367 -->2aaa
-        <!-- /react-text -->
-    </div>
-    <div class="pipeline-small-label" style="position: absolute; width: 96px; text-align: center; margin-left: -48px; margin-top: 20px; top: 60px; left: 30px;">Start</div>
-    <div class="pipeline-small-label" style="position: absolute; width: 96px; text-align: center; margin-left: -48px; margin-top: 20px; top: 60px; left: 150px;">abcde</div>
-    <div class="pipeline-small-label" style="position: absolute; width: 96px; text-align: center; margin-left: -48px; margin-top: 20px; top: 130px; left: 150px;">small-label</div>
 </div>
- </div>
+
+<div id="app"></div>
+
+<script src="//unpkg.com/react@16.5.2/umd/react.production.min.js"></script>
+<script src="//unpkg.com/react-dom@16.5.2/umd/react-dom.production.min.js"></script>
+<script src="editor.js"></script>
+<script>
+    ReactDOM.render(
+            RenderPipeline(null, 1.7, null),
+            document.getElementById('app')
+    );
+</script>
 </body>
 </html>
 
 
-<!-- 
-渲染流程: 
+<!--
+渲染流程:
 总体高度: 估计是有公式的
 
-svg: 
+svg:
 	Line
 		placeholder 虚线链接 加号(+) 的这个线 ,只出现在一个Stag有两个或者两个以上节点的情况下
 		line        链接两个Stag之间的直线, Line 只会往前一个Stag链接
