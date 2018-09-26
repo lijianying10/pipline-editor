@@ -187,7 +187,7 @@ function RenderNodeElements(data, clickCallback) {
             </g>
         </React.Fragment>);
     });
-
+    
     return (<React.Fragment>
         {/*startNode*/}
         <g transform="translate(30,60)" className="editor-graph-nodegroup">
@@ -196,6 +196,19 @@ function RenderNodeElements(data, clickCallback) {
                     fillOpacity="0" stroke="none"></circle>
         </g>
         {stagNodes}
+        {/*LastPlaceHolder*/}
+        <g transform={"translate(" + (30 + (data.length + 1) * 120).toString() + ",60)"}
+           className="editor-graph-nodegroup">
+            <g>
+                <circle className="editor-add-node-placeholder" r="11" strokeWidth="1.7"></circle>
+                <g className="result-status-glyph" transform="rotate(45)">
+                    <polygon
+                        points="4.67 -3.73 3.73 -4.67 0 -0.94 -3.73 -4.67 -4.67 -3.73 -0.94 0 -4.67 3.73 -3.73 4.67 0 0.94 3.73 4.67 4.67 3.73 0.94 0"></polygon>
+                </g>
+            </g>
+            <circle r="18.9" cursor="pointer" className="pipeline-node-hittarget"
+                    fillOpacity="0" stroke="none"></circle>
+        </g>
     </React.Fragment>);
 }
 
@@ -246,7 +259,9 @@ function RenderSingleActionNode(x, y, status, errors) {
                 <circle className="editor-graph-node-inner" r="9.3"></circle>
             </g>
             {errorsNode}
-            <circle r="18.9" cursor="pointer" className="pipeline-node-hittarget" id="pipeline-node-hittarget-6"
+            <circle r="18.9" cursor="pointer" className="pipeline-node-hittarget" onClick={function () {
+                console.log("click here");
+            }}
                     fillOpacity="0" stroke="none"></circle>
         </g>
     )

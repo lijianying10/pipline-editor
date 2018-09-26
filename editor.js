@@ -210,7 +210,25 @@ function RenderNodeElements(data, clickCallback) {
             React.createElement('circle', { r: '18.9', cursor: 'pointer', className: 'pipeline-node-hittarget', id: 'pipeline-node-hittarget-1-start',
                 fillOpacity: '0', stroke: 'none' })
         ),
-        stagNodes
+        stagNodes,
+        React.createElement(
+            'g',
+            { transform: "translate(" + (30 + (data.length + 1) * 120).toString() + ",60)",
+                className: 'editor-graph-nodegroup' },
+            React.createElement(
+                'g',
+                null,
+                React.createElement('circle', { className: 'editor-add-node-placeholder', r: '11', strokeWidth: '1.7' }),
+                React.createElement(
+                    'g',
+                    { className: 'result-status-glyph', transform: 'rotate(45)' },
+                    React.createElement('polygon', {
+                        points: '4.67 -3.73 3.73 -4.67 0 -0.94 -3.73 -4.67 -4.67 -3.73 -0.94 0 -4.67 3.73 -3.73 4.67 0 0.94 3.73 4.67 4.67 3.73 0.94 0' })
+                )
+            ),
+            React.createElement('circle', { r: '18.9', cursor: 'pointer', className: 'pipeline-node-hittarget',
+                fillOpacity: '0', stroke: 'none' })
+        )
     );
 }
 
@@ -276,7 +294,9 @@ function RenderSingleActionNode(x, y, status, errors) {
             React.createElement('circle', { className: 'editor-graph-node-inner', r: '9.3' })
         ),
         errorsNode,
-        React.createElement('circle', { r: '18.9', cursor: 'pointer', className: 'pipeline-node-hittarget', id: 'pipeline-node-hittarget-6',
+        React.createElement('circle', { r: '18.9', cursor: 'pointer', className: 'pipeline-node-hittarget', onClick: function onClick() {
+                console.log("click here");
+            },
             fillOpacity: '0', stroke: 'none' })
     );
 }
