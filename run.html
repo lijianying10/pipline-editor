@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="jenkins-design-language.css"/>
+    <link rel="stylesheet" href="extensions.css"/>
+</head>
+<body>
+
+
+<div style="display: flex; top: 400px">
+    <div data-reactroot="" class="PipelineGraph-container">
+        <div class="PipelineGraph" style="position: relative; overflow: visible;">
+            <svg width="408" height="200">
+                <line class="pipeline-connector" stroke-width="3.5" x1="65.25" y1="55" x2="133.75" y2="55"></line>
+                <path class="pipeline-connector" stroke-width="3.5"
+                      d="M 65.25 55 l 18.75 0 c 12 0 12 12 12 12 l 0 46 c 0 12 12 12 12 12 l 25.75 0"
+                      fill="none"></path>
+                <line class="pipeline-connector" stroke-width="3.5" x1="154.25" y1="55" x2="253.75" y2="55"></line>
+                <path class="pipeline-connector" stroke-width="3.5"
+                      d="M 154.25 125 l 25.75 0 c 12 0 12 -12 12 -12 l 0 -46 c 0 -12 12 -12 12 -12 l 49.75 0"
+                      fill="none"></path>
+                <line class="pipeline-connector" stroke-width="3.5" x1="274.25" y1="55" x2="342.75" y2="55"></line>
+                <g class="pipeline-selection-highlight" transform="translate(264 55)">
+                    <circle class="white-highlight" r="13" stroke-width="10"></circle>
+                    <circle r="15" stroke-width="2"></circle>
+                </g>
+                <g transform="translate(60,55)" class="pipeline-node">
+                    <circle r="7" class="pipeline-node-terminal"></circle>
+                    <circle r="19" class="pipeline-node-hittarget" fill-opacity="0" stroke="none"></circle>
+                </g>
+                <g transform="translate(144,55)" class="pipeline-node">
+                    <g class="svgResultStatus">
+                        <circle cx="0" cy="0" r="12" class="circle-bg success"></circle>
+                        <g class="result-status-glyph">
+                            <polygon
+                                    points="-2.00 2.80 -4.80 0.00 -5.73 0.933 -2.00 4.67 6.00 -3.33 5.07 -4.27"></polygon>
+                        </g>
+                    </g>
+                    <title>Passed in 0s</title>
+                    <circle r="19" class="pipeline-node-hittarget" fill-opacity="0" stroke="none"
+                            cursor="pointer"></circle>
+                </g>
+                <g transform="translate(144,125)" class="pipeline-node">
+                    <g class="svgResultStatus">
+                        <circle cx="0" cy="0" r="12" class="circle-bg success"></circle>
+                        <g class="result-status-glyph">
+                            <polygon
+                                    points="-2.00 2.80 -4.80 0.00 -5.73 0.933 -2.00 4.67 6.00 -3.33 5.07 -4.27"></polygon>
+                        </g>
+                    </g>
+                    <title>Passed in 0s</title>
+                    <circle r="19" class="pipeline-node-hittarget" fill-opacity="0" stroke="none"
+                            cursor="pointer"></circle>
+                </g>
+                <g transform="translate(264,55)" class="pipeline-node-selected">
+                    <g class="progress-spinner running">
+                        <circle cx="0" cy="0" r="10.25" stroke-width="3.5"></circle>
+                        <circle class="inner" cx="0" cy="0" r="3.4166666666666665"></circle>
+                        <path class="running" fill="none" stroke-width="3.5"
+                              d="M 6.276314845630185e-16 10.25 A 10.25 10.25 0 0 0 6.276314845630185e-16 -10.25"></path>
+                    </g>
+                    <circle r="19" class="pipeline-node-hittarget" fill-opacity="0" stroke="none"
+                            cursor="pointer"></circle>
+                </g>
+                <g transform="translate(348,55)" class="pipeline-node">
+                    <circle r="7" class="pipeline-node-terminal"></circle>
+                    <circle r="19" class="pipeline-node-hittarget" fill-opacity="0" stroke="none"></circle>
+                </g>
+            </svg>
+            <div class="TruncatingLabel pipeline-big-label"
+                 style="overflow: hidden; overflow-wrap: break-word; position: absolute; width: 113px; max-height: 35px; text-align: center; margin-left: -57px; bottom: 165px; left: 60px;">
+                Start
+            </div>
+            <div class="TruncatingLabel pipeline-big-label"
+                 style="overflow: hidden; overflow-wrap: break-word; position: absolute; width: 113px; max-height: 35px; text-align: center; margin-left: -57px; bottom: 165px; left: 144px;">
+                build
+            </div>
+            <div class="TruncatingLabel pipeline-big-label selected"
+                 style="overflow: hidden; overflow-wrap: break-word; position: absolute; width: 113px; max-height: 35px; text-align: center; margin-left: -57px; bottom: 165px; left: 264px;">
+                stag
+            </div>
+            <div class="TruncatingLabel pipeline-big-label"
+                 style="overflow: hidden; overflow-wrap: break-word; position: absolute; width: 113px; max-height: 35px; text-align: center; margin-left: -57px; bottom: 165px; left: 348px;">
+                End
+            </div>
+            <div class="TruncatingLabel pipeline-small-label"
+                 style="overflow: hidden; overflow-wrap: break-word; top: 70px; left: 99px; position: absolute; width: 89px; max-height: 39px; text-align: center;">
+                build
+            </div>
+            <div class="TruncatingLabel pipeline-small-label"
+                 style="overflow: hidden; overflow-wrap: break-word; top: 140px; left: 99px; position: absolute; width: 89px; max-height: 39px; text-align: center;">
+                chrome
+            </div>
+        </div>
+    </div>
+
+    <div class="ExtensionPoint jenkins-pipeline-run-result"
+         style="overflow: visible; margin: 30px auto;transform: scale(1.9)">
+        <div>
+            <div data-reactroot="" class="PipelineGraph-container">
+                <div class="PipelineGraph" style="position: relative; overflow: visible;">
+                    <svg width="408" height="200">
+                        <line class="pipeline-connector" stroke-width="3.5" x1="65.25" y1="55" x2="133.75"
+                              y2="55"></line>
+                        <path class="pipeline-connector" stroke-width="3.5"
+                              d="M 65.25 55 l 18.75 0 c 12 0 12 12 12 12 l 0 46 c 0 12 12 12 12 12 l 25.75 0"
+                              fill="none"></path>
+                        <line class="pipeline-connector" stroke-width="3.5" x1="154.25" y1="55" x2="253.75"
+                              y2="55"></line>
+                        <path class="pipeline-connector" stroke-width="3.5"
+                              d="M 154.25 125 l 25.75 0 c 12 0 12 -12 12 -12 l 0 -46 c 0 -12 12 -12 12 -12 l 49.75 0"
+                              fill="none"></path>
+                        <line class="pipeline-connector" stroke-width="3.5" x1="274.25" y1="55" x2="342.75"
+                              y2="55"></line>
+                        <g class="pipeline-selection-highlight" transform="translate(144 55)">
+                            <circle class="white-highlight" r="13" stroke-width="10"></circle>
+                            <circle r="15" stroke-width="2"></circle>
+                        </g>
+                        <g transform="translate(60,55)" class="pipeline-node">
+                            <circle r="7" class="pipeline-node-terminal"></circle>
+                            <circle r="19" class="pipeline-node-hittarget" fill-opacity="0" stroke="none"></circle>
+                        </g>
+                        <g transform="translate(144,55)" class="pipeline-node-selected">
+                            <g class="svgResultStatus">
+                                <circle cx="0" cy="0" r="12" class="circle-bg success"></circle>
+                                <g class="result-status-glyph">
+                                    <polygon
+                                            points="-2.00 2.80 -4.80 0.00 -5.73 0.933 -2.00 4.67 6.00 -3.33 5.07 -4.27"></polygon>
+                                </g>
+                            </g>
+                            <title>Passed in 0s</title>
+                            <circle r="19" class="pipeline-node-hittarget" fill-opacity="0" stroke="none"
+                                    cursor="pointer"></circle>
+                        </g>
+                        <g transform="translate(144,125)" class="pipeline-node">
+                            <g class="svgResultStatus">
+                                <circle cx="0" cy="0" r="12" class="circle-bg success"></circle>
+                                <g class="result-status-glyph">
+                                    <polygon
+                                            points="-2.00 2.80 -4.80 0.00 -5.73 0.933 -2.00 4.67 6.00 -3.33 5.07 -4.27"></polygon>
+                                </g>
+                            </g>
+                            <title>Passed in 0s</title>
+                            <circle r="19" class="pipeline-node-hittarget" fill-opacity="0" stroke="none"
+                                    cursor="pointer"></circle>
+                        </g>
+                        <g transform="translate(264,55)" class="pipeline-node">
+                            <g class="progress-spinner running">
+                                <circle cx="0" cy="0" r="10.25" stroke-width="3.5"></circle>
+                                <circle class="inner" cx="0" cy="0" r="3.4166666666666665"></circle>
+                                <path class="running" fill="none" stroke-width="3.5"
+                                      d="M 6.276314845630185e-16 10.25 A 10.25 10.25 0 0 0 6.276314845630185e-16 -10.25"></path>
+                            </g>
+                            <circle r="19" class="pipeline-node-hittarget" fill-opacity="0" stroke="none"
+                                    cursor="pointer"></circle>
+                        </g>
+                        <g transform="translate(348,55)" class="pipeline-node">
+                            <circle r="7" class="pipeline-node-terminal"></circle>
+                            <circle r="19" class="pipeline-node-hittarget" fill-opacity="0" stroke="none"></circle>
+                        </g>
+                    </svg>
+                    <div class="TruncatingLabel pipeline-big-label"
+                         style="overflow: hidden; overflow-wrap: break-word; position: absolute; width: 113px; max-height: 35px; text-align: center; margin-left: -57px; bottom: 165px; left: 60px;">
+                        Start
+                    </div>
+                    <div class="TruncatingLabel pipeline-big-label selected"
+                         style="overflow: hidden; overflow-wrap: break-word; position: absolute; width: 113px; max-height: 35px; text-align: center; margin-left: -57px; bottom: 165px; left: 144px;">
+                        build
+                    </div>
+                    <div class="TruncatingLabel pipeline-big-label"
+                         style="overflow: hidden; overflow-wrap: break-word; position: absolute; width: 113px; max-height: 35px; text-align: center; margin-left: -57px; bottom: 165px; left: 264px;">
+                        stag
+                    </div>
+                    <div class="TruncatingLabel pipeline-big-label"
+                         style="overflow: hidden; overflow-wrap: break-word; position: absolute; width: 113px; max-height: 35px; text-align: center; margin-left: -57px; bottom: 165px; left: 348px;">
+                        End
+                    </div>
+                    <div class="TruncatingLabel pipeline-small-label selected"
+                         style="overflow: hidden; overflow-wrap: break-word; top: 70px; left: 99px; position: absolute; width: 89px; max-height: 39px; text-align: center;">
+                        build
+                    </div>
+                    <div class="TruncatingLabel pipeline-small-label"
+                         style="overflow: hidden; overflow-wrap: break-word; top: 140px; left: 99px; position: absolute; width: 89px; max-height: 39px; text-align: center;">
+                        chrome
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
+
