@@ -1,5 +1,20 @@
 'use strict';
 
+var defaultLayout = {
+    nodeSpacingH: 120,
+    nodeSpacingV: 70,
+    nodeRadius: 12.5,
+    innerDotRadius: 9.3,
+    placeholderRadius: 11,
+    startRadius: 7.5,
+    curveRadius: 12,
+    connectorStrokeWidth: 3.2,
+    addStrokeWidth: 1.7,
+    labelOffsetV: 25,
+    smallLabelOffsetV: 20,
+    ypStart: 90
+};
+
 // RenderPipeline Render pipeline SVG
 // Params:
 // data: pipeline json data
@@ -36,9 +51,18 @@ function RenderOutline(svg, label, scale) {
 // combine all element in svgContainer
 // Return: svg element
 function RenderSvg(data, LineElements, NodeElements) {
+    // +2 means : start and tail place holder
+    var x_length = 0.5 * defaultLayout.nodeSpacingH + (data.length + 1) * defaultLayout.nodeSpacingH;
+    var y_length = 0;
+    for (var i = 0; i < data.length; i++) {
+        if (data[i].actions.length > y_length) {
+            y_length = data[i].actions.length;
+        }
+    }
+    y_length = defaultLayout.ypStart + y_length * defaultLayout.nodeSpacingV + 2 * defaultLayout.nodeRadius;
     return React.createElement(
         'svg',
-        { className: 'editor-graph-svg', width: '420', height: '325' },
+        { className: 'editor-graph-svg', width: x_length.toString(), height: y_length.toString() },
         LineElements,
         NodeElements
     );
@@ -46,13 +70,29 @@ function RenderSvg(data, LineElements, NodeElements) {
 
 // return Label elements
 function RenderLabelElements(data) {
+    var y_length = 0;
+    for (var i = 0; i < data.length; i++) {
+        if (data[i].actions.length > y_length) {
+            y_length = data[i].actions.length;
+        }
+    }
+
+    // big label bottom value
+    var y_heigh = defaultLayout.ypStart + y_length * defaultLayout.nodeSpacingV + 2 * defaultLayout.nodeRadius - 68;
+
     return React.createElement(
         React.Fragment,
         null,
         React.createElement(
             'div',
             { className: 'pipeline-big-label top-level-parallel', 'data-stagename': 'abcde',
-                style: { width: "120px", marginLeft: "-60px", marginBottom: "21px", bottom: "265px", left: "150px" } },
+                style: {
+                    width: "120px",
+                    marginLeft: "-60px",
+                    marginBottom: "21px",
+                    bottom: y_heigh.toString() + 'px',
+                    left: "150px"
+                } },
             'abcde',
             React.createElement(
                 'svg',
@@ -72,7 +112,13 @@ function RenderLabelElements(data) {
         React.createElement(
             'div',
             { className: 'pipeline-big-label selected', 'data-stagename': '2aaa',
-                style: { width: "120px", marginLeft: "-60px", marginBottom: "21px", bottom: "265px", left: "270px" } },
+                style: {
+                    width: "120px",
+                    marginLeft: "-60px",
+                    marginBottom: "21px",
+                    bottom: y_heigh.toString() + 'px',
+                    left: "270px"
+                } },
             '2aaa'
         ),
         React.createElement(
@@ -244,6 +290,13 @@ function RenderLineElements(data) {
     return React.createElement(
         React.Fragment,
         null,
+        RenderPlaceHolderLineElements(data),
+        RenderStraightLineElements(data),
+        RenderActionLineElements(data)
+    );
+    return React.createElement(
+        React.Fragment,
+        null,
         React.createElement('path', { 'class': 'pipeline-connector placeholder', 'stroke-width': '3.2',
             d: 'M 30 60 l 60 0 c 12 0 12 12 12 12 l 0 116 c 0 12 12 12 12 12 l 36 0', fill: 'none' }),
         React.createElement('path', { 'class': 'pipeline-connector placeholder', 'stroke-width': '3.2',
@@ -257,5 +310,82 @@ function RenderLineElements(data) {
         React.createElement('path', { 'class': 'pipeline-connector', 'stroke-width': '3.2',
             d: 'M 150 130 l 36 0 c 12 0 12 -12 12 -12 l 0 -46 c 0 -12 12 -12 12 -12 l 60 0', fill: 'none' }),
         React.createElement('line', { 'class': 'pipeline-connector placeholder', 'stroke-width': '3.2', x1: '270', y1: '60', x2: '390', y2: '60' })
+    );
+}
+
+function RenderStraightLineElements(data) {
+    var lines = data.map(function (stag, index) {
+        var x_end = 30 + (index + 1) * 120;
+        var x_start = x_end - 120;
+        console.log(index, stag, x_start, x_end);
+        return React.createElement('line', { className: 'pipeline-connector', 'stroke-width': '3.2', x1: x_start.toString(), y1: '60',
+            x2: x_end.toString(),
+            y2: '60' });
+    });
+    return React.createElement(
+        React.Fragment,
+        null,
+        lines,
+        React.createElement('line', { className: 'pipeline-connector placeholder', 'stroke-width': '3.2', x1: 30 + data.length * 120, y1: '60',
+            x2: 30 + (data.length + 1) * 120,
+            y2: '60' })
+    );
+}
+
+function RenderPlaceHolderLineElements(data) {
+    var placeHolders = data.map(function (stag, index) {
+        var x_start = 30 + index * 120;
+        var y_start = 60;
+        var v_length = 46 + (stag.actions.length - 1) * 70;
+        console.log("debug place holder: ", index, stag, x_start, y_start, v_length);
+
+        var pathData = 'M ' + x_start + ' ' + y_start + // start position
+        ' l 60 0' + // first horizontal line
+        ' c 12 0 12 12 12 12' + ( // turn
+        ' l 0 ' + v_length) + // vertical line
+        ' c 0 12 12 12 12 12' + // turn again
+        ' l 36 0'; // second horizontal line
+        return React.createElement('path', { className: 'pipeline-connector placeholder', 'stroke-width': '3.2',
+            d: pathData, fill: 'none' });
+    });
+
+    return React.createElement(
+        React.Fragment,
+        null,
+        placeHolders
+    );
+}
+
+function RenderActionLineElements(data) {
+    var stagLines = data.map(function (stag, index) {
+        var x_start = 30 + index * 120;
+        var y_start = 60;
+        var lines = stag.actions.map(function (action, action_index) {
+            if (action_index == stag.actions.length - 1) {
+                return;
+            }
+            var v_length = 46 + action_index * 70;
+            console.log("debug place holder: ", index, stag, x_start, y_start, v_length);
+
+            var pathData = 'M ' + x_start + ' ' + y_start + // start position
+            ' l 60 0' + // first horizontal line
+            ' c 12 0 12 12 12 12' + ( // turn
+            ' l 0 ' + v_length) + // vertical line
+            ' c 0 12 12 12 12 12' + // turn again
+            ' l 36 0'; // second horizontal line
+            return React.createElement('path', { className: 'pipeline-connector', 'stroke-width': '3.2',
+                d: pathData, fill: 'none' });
+        });
+        return React.createElement(
+            React.Fragment,
+            null,
+            lines
+        );
+    });
+
+    return React.createElement(
+        React.Fragment,
+        null,
+        stagLines
     );
 }
