@@ -18,9 +18,10 @@ function RenderPipeline(data, scale, nodeClickCallback) {
 // Render DIV outline
 // svg: input svg react element
 function RenderOutline(svg, label, scale) {
-    let strScale = scale.toString();
+    let strScale = "scale(" + scale.toString() + ")";
+    const divStyle = {position: 'relative', overflow: 'visible', margin: '30px auto', transform: strScale};
     return (
-        <div style={{position: 'relative', overflow: 'visible', margin: '30px auto', transform: 'scale(' + strScale + ')'}}>
+        <div style={divStyle}>
             {svg}
             {label}
         </div>
@@ -40,20 +41,21 @@ function RenderSvg(LineElements, NodeElements, LabelElements) {
     )
 }
 
+
 // return Label elements
 function RenderLabelElements(data) {
     let res = new Array();
     res.push(
         <div className="pipeline-big-label top-level-parallel" data-stagename="abcde"
-             style="width: 120px; margin-left: -60px; margin-bottom: 21px; bottom: 265px; left: 150px;">
+             style={{width: "120px", marginLeft: "-60px", marginBottom: "21px", bottom: "265px", left: "150px"}}>
             abcde
             <svg icon="NavigationMoreHoriz" focusable="false" className="svg-icon" viewBox="0 0 24 24"
-                 style="height: 24px; width: 24px;">
+                 style={{height: "24px", width: "24px"}}>
                 <path
                     d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
             </svg>
             <svg icon="NavigationMoreHoriz" focusable="false" className="svg-icon" viewBox="0 0 24 24"
-                 style="height: 24px; width: 24px;">
+                 style={{height: "24px", width: "24px"}}>
                 <path
                     d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
             </svg>
@@ -61,25 +63,25 @@ function RenderLabelElements(data) {
     );
     res.push(
         <div className="pipeline-big-label selected" data-stagename="2aaa"
-             style="width: 120px; margin-left: -60px; margin-bottom: 21px; bottom: 265px; left: 270px;">
+             style={{width: "120px", marginLeft: "-60px", marginBottom: "21px", bottom: "265px", left: "270px"}}>
             2aaa
         </div>
     );
     res.push(
         <div className="pipeline-small-label"
-             style="position: absolute; width: 96px; text-align: center; margin-left: -48px; margin-top: 20px; top: 60px; left: 30px;">
+             style={{position: "absolute", width: "96px", textAlign: "center", marginLeft: "-48px", marginTop: "20px", top: "60px", left: "30px"}}>
             Start
         </div>
     );
     res.push(
         <div className="pipeline-small-label"
-             style="position: absolute; width: 96px; text-align: center; margin-left: -48px; margin-top: 20px; top: 60px; left: 150px;">
+             style={{position: "absolute", width: "96px", textAlign: "center", marginLeft: "-48px", marginTop: "20px", top: "60px", left: "150px"}}>
             abcde
         </div>
     );
     res.push(
         <div className="pipeline-small-label"
-             style="position: absolute; width: 96px; text-align: center; margin-left: -48px; margin-top: 20px; top: 130px; left: 150px;">
+             style={{position: "absolute", width: "96px", textAlign: "center", marginLeft: "-48px", marginTop: "20px ",top: "130px", left: "150px"}}>
             small-label
         </div>
     );
