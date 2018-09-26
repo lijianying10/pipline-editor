@@ -193,6 +193,9 @@ function RenderSingleActionNode(x, y, stag_index, action_index, status, errors, 
     if (status === "ok") {
         return (
             <g transform={"translate(" + x + "," + y + ")"} className="pipeline-node">
+                <g>
+                    <circle r="13" fill="white"></circle>
+                </g>
                 <g className="svgResultStatus">
                     <circle cx="0" cy="0" r="12" className="circle-bg success"></circle>
                     <g className="result-status-glyph">
@@ -200,7 +203,7 @@ function RenderSingleActionNode(x, y, stag_index, action_index, status, errors, 
                     </g>
                 </g>
                 <title>Passed in 0s</title>
-                <circle r="19" className="pipeline-node-hittarget" fill-opacity="0" stroke="none"
+                <circle r="19" className="pipeline-node-hittarget" fillOpacity="0" stroke="none"
                         cursor="pointer"></circle>
             </g>
         )
@@ -208,13 +211,16 @@ function RenderSingleActionNode(x, y, stag_index, action_index, status, errors, 
     if (status === "running") {
         return (
             <g transform={"translate(" + x + "," + y + ")"} className="pipeline-node">
+                <g>
+                    <circle r="13" fill="white"></circle>
+                </g>
                 <g className="progress-spinner running">
-                    <circle cx="0" cy="0" r="10.25" stroke-width="3.5"></circle>
+                    <circle cx="0" cy="0" r="10.25" strokeWidth="3.5"></circle>
                     <circle className="inner" cx="0" cy="0" r="3.4166666666666665"></circle>
-                    <path className="running" fill="none" stroke-width="3.5"
+                    <path className="running" fill="none" strokeWidth="3.5"
                           d="M 6.276314845630185e-16 10.25 A 10.25 10.25 0 0 0 6.276314845630185e-16 -10.25"></path>
                 </g>
-                <circle r="19" className="pipeline-node-hittarget" fill-opacity="0" stroke="none" cursor="pointer"
+                <circle r="19" className="pipeline-node-hittarget" fillOpacity="0" stroke="none" cursor="pointer"
                         onClick={function () {
                             clickCallback(stag_index, action_index);
                         }}

@@ -209,6 +209,11 @@ function RenderSingleActionNode(x, y, stag_index, action_index, status, errors, 
             { transform: "translate(" + x + "," + y + ")", className: 'pipeline-node' },
             React.createElement(
                 'g',
+                null,
+                React.createElement('circle', { r: '13', fill: 'white' })
+            ),
+            React.createElement(
+                'g',
                 { className: 'svgResultStatus' },
                 React.createElement('circle', { cx: '0', cy: '0', r: '12', className: 'circle-bg success' }),
                 React.createElement(
@@ -222,7 +227,7 @@ function RenderSingleActionNode(x, y, stag_index, action_index, status, errors, 
                 null,
                 'Passed in 0s'
             ),
-            React.createElement('circle', { r: '19', className: 'pipeline-node-hittarget', 'fill-opacity': '0', stroke: 'none',
+            React.createElement('circle', { r: '19', className: 'pipeline-node-hittarget', fillOpacity: '0', stroke: 'none',
                 cursor: 'pointer' })
         );
     }
@@ -232,13 +237,18 @@ function RenderSingleActionNode(x, y, stag_index, action_index, status, errors, 
             { transform: "translate(" + x + "," + y + ")", className: 'pipeline-node' },
             React.createElement(
                 'g',
+                null,
+                React.createElement('circle', { r: '13', fill: 'white' })
+            ),
+            React.createElement(
+                'g',
                 { className: 'progress-spinner running' },
-                React.createElement('circle', { cx: '0', cy: '0', r: '10.25', 'stroke-width': '3.5' }),
+                React.createElement('circle', { cx: '0', cy: '0', r: '10.25', strokeWidth: '3.5' }),
                 React.createElement('circle', { className: 'inner', cx: '0', cy: '0', r: '3.4166666666666665' }),
-                React.createElement('path', { className: 'running', fill: 'none', 'stroke-width': '3.5',
+                React.createElement('path', { className: 'running', fill: 'none', strokeWidth: '3.5',
                     d: 'M 6.276314845630185e-16 10.25 A 10.25 10.25 0 0 0 6.276314845630185e-16 -10.25' })
             ),
-            React.createElement('circle', { r: '19', className: 'pipeline-node-hittarget', 'fill-opacity': '0', stroke: 'none', cursor: 'pointer',
+            React.createElement('circle', { r: '19', className: 'pipeline-node-hittarget', fillOpacity: '0', stroke: 'none', cursor: 'pointer',
                 onClick: function onClick() {
                     clickCallback(stag_index, action_index);
                 }
