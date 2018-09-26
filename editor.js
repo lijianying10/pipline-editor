@@ -317,7 +317,6 @@ function RenderStraightLineElements(data) {
     var lines = data.map(function (stag, index) {
         var x_end = 30 + (index + 1) * 120;
         var x_start = x_end - 120;
-        console.log(index, stag, x_start, x_end);
         return React.createElement('line', { className: 'pipeline-connector', 'stroke-width': '3.2', x1: x_start.toString(), y1: '60',
             x2: x_end.toString(),
             y2: '60' });
@@ -337,7 +336,6 @@ function RenderPlaceHolderLineElements(data) {
         var x_start = 30 + index * 120;
         var y_start = 60;
         var v_length = 46 + (stag.actions.length - 1) * 70;
-        console.log("debug place holder: ", index, stag, x_start, y_start, v_length);
 
         var pathData = 'M ' + x_start + ' ' + y_start + // start position
         ' l 60 0' + // first horizontal line
@@ -361,20 +359,34 @@ function RenderActionLineElements(data) {
         var x_start = 30 + index * 120;
         var y_start = 60;
         var lines = stag.actions.map(function (action, action_index) {
-            if (action_index == stag.actions.length - 1) {
+            if (action_index == 0) {
                 return;
             }
-            var v_length = 46 + action_index * 70;
-            console.log("debug place holder: ", index, stag, x_start, y_start, v_length);
+            var v_length = 46 + (action_index - 1) * 70;
+            console.log("debug action line: ", index, action_index, stag, x_start, y_start, v_length);
 
-            var pathData = 'M ' + x_start + ' ' + y_start + // start position
+            var pathDataLeft = 'M ' + x_start + ' ' + y_start + // start position
             ' l 60 0' + // first horizontal line
             ' c 12 0 12 12 12 12' + ( // turn
             ' l 0 ' + v_length) + // vertical line
             ' c 0 12 12 12 12 12' + // turn again
             ' l 36 0'; // second horizontal line
-            return React.createElement('path', { className: 'pipeline-connector', 'stroke-width': '3.2',
-                d: pathData, fill: 'none' });
+
+            var pathDataRight = 'M ' + (x_start + 120) + ' ' + (y_start + action_index * 70) + // start position
+            ' l 36 0' + // first horizontal line
+            ' c 12 0 12 -12 12 -12' + ( // turn
+            ' l 0 ' + -v_length) + // vertical line
+            ' c 0 -12 12 -12 12 -12' + // turn again
+            ' l 60 0'; // second horizontal line
+
+            return React.createElement(
+                React.Fragment,
+                null,
+                React.createElement('path', { className: 'pipeline-connector', 'stroke-width': '3.2',
+                    d: pathDataLeft, fill: 'none' }),
+                React.createElement('path', { className: 'pipeline-connector', 'stroke-width': '3.2',
+                    d: pathDataRight, fill: 'none' })
+            );
         });
         return React.createElement(
             React.Fragment,

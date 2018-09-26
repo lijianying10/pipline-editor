@@ -277,7 +277,12 @@ function RenderLineElements(data) {
            l 36 0" fill="none"></path>
             <line class="pipeline-connector" stroke-width="3.2" x1="150" y1="60" x2="270" y2="60"></line>
             <path class="pipeline-connector" stroke-width="3.2"
-                  d="M 150 130 l 36 0 c 12 0 12 -12 12 -12 l 0 -46 c 0 -12 12 -12 12 -12 l 60 0" fill="none"></path>
+                  d="M 150 130
+                  l 36 0
+                  c 12 0 12 -12 12 -12
+                  l 0 -46
+                  c 0 -12 12 -12 12 -12
+                  l 60 0" fill="none"></path>
             <line class="pipeline-connector placeholder" stroke-width="3.2" x1="270" y1="60" x2="390" y2="60"></line>
         </React.Fragment>)
 }
@@ -286,7 +291,6 @@ function RenderStraightLineElements(data) {
     let lines = data.map(function (stag, index) {
         let x_end = 30 + (index + 1) * 120;
         let x_start = x_end - 120;
-        console.log(index, stag, x_start, x_end)
         return (
             <line className="pipeline-connector" stroke-width="3.2" x1={x_start.toString()} y1="60"
                   x2={x_end.toString()}
@@ -306,7 +310,6 @@ function RenderPlaceHolderLineElements(data) {
         let x_start = 30 + index * 120;
         let y_start = 60;
         let v_length = 46 + (stag.actions.length - 1) * 70;
-        console.log("debug place holder: ", index, stag, x_start, y_start, v_length);
 
         const pathData =
             `M ${x_start} ${y_start}` + // start position
@@ -331,23 +334,34 @@ function RenderActionLineElements(data) {
         let x_start = 30 + index * 120;
         let y_start = 60;
         let lines = stag.actions.map(function (action, action_index) {
-            if (action_index == stag.actions.length - 1) {
+            if (action_index == 0) {
                 return
             }
-            let v_length = 46 + action_index * 70;
-            console.log("debug place holder: ", index, stag, x_start, y_start, v_length);
+            let v_length = 46 + (action_index - 1) * 70;
+            console.log("debug action line: ", index, action_index, stag, x_start, y_start, v_length);
 
-            const pathData =
+            const pathDataLeft =
                 `M ${x_start} ${y_start}` + // start position
                 ` l 60 0` + // first horizontal line
                 ` c 12 0 12 12 12 12` + // turn
                 ` l 0 ${v_length}` + // vertical line
                 ` c 0 12 12 12 12 12` + // turn again
                 ` l 36 0`; // second horizontal line
-            return (
+
+            const pathDataRight =
+                `M ${x_start + 120} ${y_start + action_index * 70}` + // start position
+                ` l 36 0` + // first horizontal line
+                ` c 12 0 12 -12 12 -12` + // turn
+                ` l 0 ${-v_length}` + // vertical line
+                ` c 0 -12 12 -12 12 -12` + // turn again
+                ` l 60 0`; // second horizontal line
+
+            return (<React.Fragment>
                 <path className="pipeline-connector" stroke-width="3.2"
-                      d={pathData} fill="none"></path>
-            )
+                      d={pathDataLeft} fill="none"></path>
+                <path className="pipeline-connector" stroke-width="3.2"
+                      d={pathDataRight} fill="none"></path>
+            </React.Fragment>)
         });
         return (<React.Fragment>
             {lines}
