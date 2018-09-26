@@ -172,9 +172,8 @@ function RenderSmallLabel(x, y, title) {
 function RenderNodeElements(data, clickCallback) {
     var stagNodes = data.map(function (stag, stag_index) {
         var nodes = stag.actions.map(function (action, action_index) {
-            return RenderSingleActionNode(30 + (stag_index + 1) * 120, 60 + action_index * 70, action.state, action.error);
+            return RenderSingleActionNode(30 + (stag_index + 1) * 120, 60 + action_index * 70, stag_index, action_index, action.state, action.error, clickCallback);
         });
-        console.log("Place holder button", "translate(" + (30 + (stag_index + 1) * 120).toString() + "," + (60 + stag.actions.length * 70).toString() + ")");
         return React.createElement(
             React.Fragment,
             null,
@@ -194,7 +193,9 @@ function RenderNodeElements(data, clickCallback) {
                             points: '4.67 -3.73 3.73 -4.67 0 -0.94 -3.73 -4.67 -4.67 -3.73 -0.94 0 -4.67 3.73 -3.73 4.67 0 0.94 3.73 4.67 4.67 3.73 0.94 0' })
                     )
                 ),
-                React.createElement('circle', { r: '18.9', cursor: 'pointer', className: 'pipeline-node-hittarget', id: 'pipeline-node-hittarget-2-add',
+                React.createElement('circle', { r: '18.9', cursor: 'pointer', className: 'pipeline-node-hittarget', onClick: function onClick() {
+                        clickCallback(stag_index, -1);
+                    },
                     fillOpacity: '0', stroke: 'none' })
             )
         );
@@ -207,7 +208,7 @@ function RenderNodeElements(data, clickCallback) {
             'g',
             { transform: 'translate(30,60)', className: 'editor-graph-nodegroup' },
             React.createElement('circle', { r: '7.5', className: 'start-node', stroke: 'none' }),
-            React.createElement('circle', { r: '18.9', cursor: 'pointer', className: 'pipeline-node-hittarget', id: 'pipeline-node-hittarget-1-start',
+            React.createElement('circle', { r: '18.9', cursor: 'pointer', className: 'pipeline-node-hittarget',
                 fillOpacity: '0', stroke: 'none' })
         ),
         stagNodes,
@@ -226,13 +227,15 @@ function RenderNodeElements(data, clickCallback) {
                         points: '4.67 -3.73 3.73 -4.67 0 -0.94 -3.73 -4.67 -4.67 -3.73 -0.94 0 -4.67 3.73 -3.73 4.67 0 0.94 3.73 4.67 4.67 3.73 0.94 0' })
                 )
             ),
-            React.createElement('circle', { r: '18.9', cursor: 'pointer', className: 'pipeline-node-hittarget',
+            React.createElement('circle', { r: '18.9', cursor: 'pointer', className: 'pipeline-node-hittarget', onClick: function onClick() {
+                    clickCallback(-1, -1);
+                },
                 fillOpacity: '0', stroke: 'none' })
         )
     );
 }
 
-function RenderSingleActionNode(x, y, status, errors) {
+function RenderSingleActionNode(x, y, stag_index, action_index, status, errors, clickCallback) {
     var errorsNode = null;
     var classAppend = " " + status + " ";
     if (errors) {
@@ -295,7 +298,7 @@ function RenderSingleActionNode(x, y, status, errors) {
         ),
         errorsNode,
         React.createElement('circle', { r: '18.9', cursor: 'pointer', className: 'pipeline-node-hittarget', onClick: function onClick() {
-                console.log("click here");
+                clickCallback(stag_index, action_index);
             },
             fillOpacity: '0', stroke: 'none' })
     );
@@ -362,7 +365,6 @@ function RenderActionLineElements(data) {
                 return;
             }
             var v_length = 46 + (action_index - 1) * 70;
-            console.log("debug action line: ", index, action_index, stag, x_start, y_start, v_length);
 
             var pathDataLeft = 'M ' + x_start + ' ' + y_start + // start position
             ' l 60 0' + // first horizontal line
@@ -377,7 +379,10 @@ function RenderActionLineElements(data) {
             ' l 0 ' + -v_length) + // vertical line
             ' c 0 -12 12 -12 12 -12' + // turn again
             ' l 60 0'; // second horizontal line
-
+            if (index + 1 === data.length) {
+                return React.createElement('path', { className: 'pipeline-connector', strokeWidth: '3.2',
+                    d: pathDataLeft, fill: 'none' });
+            }
             return React.createElement(
                 React.Fragment,
                 null,

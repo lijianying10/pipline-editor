@@ -166,9 +166,8 @@ function RenderSmallLabel(x, y, title) {
 function RenderNodeElements(data, clickCallback) {
     let stagNodes = data.map(function (stag, stag_index) {
         let nodes = stag.actions.map(function (action, action_index) {
-            return RenderSingleActionNode(30 + (stag_index + 1) * 120, 60 + action_index * 70, action.state, action.error)
+            return RenderSingleActionNode(30 + (stag_index + 1) * 120, 60 + action_index * 70, stag_index, action_index, action.state, action.error, clickCallback)
         });
-        console.log("Place holder button", "translate(" + (30 + (stag_index + 1) * 120).toString() + "," + (60 + stag.actions.length * 70).toString() + ")");
         return (<React.Fragment>
             {nodes}
 
@@ -182,17 +181,19 @@ function RenderNodeElements(data, clickCallback) {
                             points="4.67 -3.73 3.73 -4.67 0 -0.94 -3.73 -4.67 -4.67 -3.73 -0.94 0 -4.67 3.73 -3.73 4.67 0 0.94 3.73 4.67 4.67 3.73 0.94 0"></polygon>
                     </g>
                 </g>
-                <circle r="18.9" cursor="pointer" className="pipeline-node-hittarget" id="pipeline-node-hittarget-2-add"
+                <circle r="18.9" cursor="pointer" className="pipeline-node-hittarget" onClick={function () {
+                    clickCallback(stag_index, -1)
+                }}
                         fillOpacity="0" stroke="none"></circle>
             </g>
         </React.Fragment>);
     });
-    
+
     return (<React.Fragment>
         {/*startNode*/}
         <g transform="translate(30,60)" className="editor-graph-nodegroup">
             <circle r="7.5" className="start-node" stroke="none"></circle>
-            <circle r="18.9" cursor="pointer" className="pipeline-node-hittarget" id="pipeline-node-hittarget-1-start"
+            <circle r="18.9" cursor="pointer" className="pipeline-node-hittarget"
                     fillOpacity="0" stroke="none"></circle>
         </g>
         {stagNodes}
@@ -206,13 +207,15 @@ function RenderNodeElements(data, clickCallback) {
                         points="4.67 -3.73 3.73 -4.67 0 -0.94 -3.73 -4.67 -4.67 -3.73 -0.94 0 -4.67 3.73 -3.73 4.67 0 0.94 3.73 4.67 4.67 3.73 0.94 0"></polygon>
                 </g>
             </g>
-            <circle r="18.9" cursor="pointer" className="pipeline-node-hittarget"
+            <circle r="18.9" cursor="pointer" className="pipeline-node-hittarget" onClick={function () {
+                clickCallback(-1, -1)
+            }}
                     fillOpacity="0" stroke="none"></circle>
         </g>
     </React.Fragment>);
 }
 
-function RenderSingleActionNode(x, y, status, errors) {
+function RenderSingleActionNode(x, y, stag_index, action_index, status, errors, clickCallback) {
     let errorsNode = null;
     let classAppend = " " + status + " ";
     if (errors) {
@@ -260,7 +263,7 @@ function RenderSingleActionNode(x, y, status, errors) {
             </g>
             {errorsNode}
             <circle r="18.9" cursor="pointer" className="pipeline-node-hittarget" onClick={function () {
-                console.log("click here");
+                clickCallback(stag_index, action_index);
             }}
                     fillOpacity="0" stroke="none"></circle>
         </g>
@@ -328,7 +331,6 @@ function RenderActionLineElements(data) {
                 return
             }
             let v_length = 46 + (action_index - 1) * 70;
-            console.log("debug action line: ", index, action_index, stag, x_start, y_start, v_length);
 
             const pathDataLeft =
                 `M ${x_start} ${y_start}` + // start position
@@ -345,7 +347,12 @@ function RenderActionLineElements(data) {
                 ` l 0 ${-v_length}` + // vertical line
                 ` c 0 -12 12 -12 12 -12` + // turn again
                 ` l 60 0`; // second horizontal line
-
+            if (index + 1 === data.length) {
+                return (
+                    <path className="pipeline-connector" strokeWidth="3.2"
+                          d={pathDataLeft} fill="none"></path>
+                )
+            }
             return (<React.Fragment>
                 <path className="pipeline-connector" strokeWidth="3.2"
                       d={pathDataLeft} fill="none"></path>
