@@ -19,11 +19,12 @@ const defaultLayout = {
 // scale: svg scale
 // nodeClickCallback: call back on click node func(node_id)
 // Return: ReactElement
-function RenderPipeline(data, scale, nodeClickCallback) {
+function RenderPipeline(data, scale, nodeClickCallback, sel_stag_index, sel_action_index) {
     return RenderOutline(
         RenderSvg(
             data,
             RenderLineElements(data),
+            RenderSelection(sel_stag_index, sel_action_index),
             RenderNodeElements(data, nodeClickCallback),
         ),
         RenderLabelElements(data),
@@ -54,7 +55,7 @@ function RenderOutline(svg, label, scale) {
 // Input: react element array
 // combine all element in svgContainer
 // Return: svg element
-function RenderSvg(data, LineElements, NodeElements) {
+function RenderSvg(data, HighLight, LineElements, NodeElements) {
     // +2 means : start and tail place holder
     let x_length = 0.5 * defaultLayout.nodeSpacingH + (data.length + 1) * defaultLayout.nodeSpacingH;
     let y_length = 0;
@@ -67,11 +68,24 @@ function RenderSvg(data, LineElements, NodeElements) {
     return (
         <svg className="editor-graph-svg" width={x_length.toString()} height={y_length.toString()}>
             {LineElements}
+            {HighLight}
             {NodeElements}
         </svg>
     )
 }
 
+function RenderSelection(stag_index, action_index) {
+    if (stag_index === -1 || action_index === -1) {
+        return null
+    }
+    return (
+        <g className="pipeline-selection-highlight"
+           transform={"translate(" + (30 + (stag_index + 1) * 120).toString() + " " + (60 + action_index * 70).toString() + ")"}>
+            <circle className="white-highlight" r="13" strokeWidth="10"></circle>
+            <circle r="15" strokeWidth="2"></circle>
+        </g>
+    )
+}
 
 // return Label elements
 function RenderLabelElements(data) {
@@ -108,9 +122,21 @@ function RenderLabelElements(data) {
                      top: "60px",
                      left: "30px"
                  }}>
-                Start
+                开始
             </div>
             {labels}
+            <div className="pipeline-small-label"
+                 style={{
+                     position: "absolute",
+                     width: "96px",
+                     textAlign: "center",
+                     marginLeft: "-48px",
+                     marginTop: "20px",
+                     top: "60px",
+                     left: (30 + (data.length + 1) * 120).toString() + "px"
+                 }}>
+                结束
+            </div>
         </React.Fragment>)
 }
 
@@ -204,6 +230,9 @@ function RenderSingleActionNode(x, y, stag_index, action_index, status, errors, 
                 </g>
                 <title>Passed in 0s</title>
                 <circle r="19" className="pipeline-node-hittarget" fillOpacity="0" stroke="none"
+                        onClick={function () {
+                            clickCallback(stag_index, action_index);
+                        }}
                         cursor="pointer"></circle>
             </g>
         )
@@ -280,10 +309,6 @@ function RenderSingleActionNode(x, y, stag_index, action_index, status, errors, 
                     fillOpacity="0" stroke="none"></circle>
         </g>
     )
-}
-
-function RenderRunningActionNode(x, y, stag_index, action_index, status, errors, clickCallback) {
-
 }
 
 // return Line elements

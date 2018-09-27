@@ -21,8 +21,8 @@ var defaultLayout = {
 // scale: svg scale
 // nodeClickCallback: call back on click node func(node_id)
 // Return: ReactElement
-function RenderPipeline(data, scale, nodeClickCallback) {
-    return RenderOutline(RenderSvg(data, RenderLineElements(data), RenderNodeElements(data, nodeClickCallback)), RenderLabelElements(data), scale);
+function RenderPipeline(data, scale, nodeClickCallback, sel_stag_index, sel_action_index) {
+    return RenderOutline(RenderSvg(data, RenderLineElements(data), RenderSelection(sel_stag_index, sel_action_index), RenderNodeElements(data, nodeClickCallback)), RenderLabelElements(data), scale);
 }
 
 // Render DIV outline
@@ -50,7 +50,7 @@ function RenderOutline(svg, label, scale) {
 // Input: react element array
 // combine all element in svgContainer
 // Return: svg element
-function RenderSvg(data, LineElements, NodeElements) {
+function RenderSvg(data, HighLight, LineElements, NodeElements) {
     // +2 means : start and tail place holder
     var x_length = 0.5 * defaultLayout.nodeSpacingH + (data.length + 1) * defaultLayout.nodeSpacingH;
     var y_length = 0;
@@ -64,7 +64,21 @@ function RenderSvg(data, LineElements, NodeElements) {
         'svg',
         { className: 'editor-graph-svg', width: x_length.toString(), height: y_length.toString() },
         LineElements,
+        HighLight,
         NodeElements
+    );
+}
+
+function RenderSelection(stag_index, action_index) {
+    if (stag_index === -1 || action_index === -1) {
+        return null;
+    }
+    return React.createElement(
+        'g',
+        { className: 'pipeline-selection-highlight',
+            transform: "translate(" + (30 + (stag_index + 1) * 120).toString() + " " + (60 + action_index * 70).toString() + ")" },
+        React.createElement('circle', { className: 'white-highlight', r: '13', strokeWidth: '10' }),
+        React.createElement('circle', { r: '15', strokeWidth: '2' })
     );
 }
 
@@ -108,9 +122,23 @@ function RenderLabelElements(data) {
                     top: "60px",
                     left: "30px"
                 } },
-            'Start'
+            '\u5F00\u59CB'
         ),
-        labels
+        labels,
+        React.createElement(
+            'div',
+            { className: 'pipeline-small-label',
+                style: {
+                    position: "absolute",
+                    width: "96px",
+                    textAlign: "center",
+                    marginLeft: "-48px",
+                    marginTop: "20px",
+                    top: "60px",
+                    left: (30 + (data.length + 1) * 120).toString() + "px"
+                } },
+            '\u7ED3\u675F'
+        )
     );
 }
 
@@ -228,6 +256,9 @@ function RenderSingleActionNode(x, y, stag_index, action_index, status, errors, 
                 'Passed in 0s'
             ),
             React.createElement('circle', { r: '19', className: 'pipeline-node-hittarget', fillOpacity: '0', stroke: 'none',
+                onClick: function onClick() {
+                    clickCallback(stag_index, action_index);
+                },
                 cursor: 'pointer' })
         );
     }
@@ -322,8 +353,6 @@ function RenderSingleActionNode(x, y, stag_index, action_index, status, errors, 
             fillOpacity: '0', stroke: 'none' })
     );
 }
-
-function RenderRunningActionNode(x, y, stag_index, action_index, status, errors, clickCallback) {}
 
 // return Line elements
 function RenderLineElements(data) {

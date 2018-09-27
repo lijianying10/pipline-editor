@@ -86,47 +86,13 @@
     ];
     var callBackFunc = function (tstag_index, taction_index) {
         console.log("callback: ", tstag_index, taction_index);
-        if (tstag_index === -1) {
-            data.push(
-                    {
-                        id: "stag_New",
-                        name: "stag_New",
-                        actions: [
-                            {
-                                id: "action_New",
-                                name: "actionNew",
-                                state: "",
-                                error: false
-                            }
-                        ]
-                    },)
-        } else if (taction_index === -1) {
-            data[tstag_index].actions.push(
-                    {
-                        id: "action_New",
-                        name: "actionNew",
-                        state: "",
-                        error: false
-                    }
-            )
-        } else {
-            data.map(function (stag, stag_index) {
-                stag.actions.map(function (action, action_index) {
-                    if (stag_index === tstag_index && action_index === taction_index) {
-                        action.state = "selected";
-                    } else {
-                        action.state = "";
-                    }
-                })
-            });
-        }
         ReactDOM.render(
-                RenderPipeline(data, 1.4, callBackFunc),
+                RenderPipeline(data, 1.4, callBackFunc, tstag_index, taction_index),
                 document.getElementById('app')
         );
     };
     ReactDOM.render(
-            RenderPipeline(data, 1.4, callBackFunc),
+            RenderPipeline(data, 1.4, callBackFunc, -1, -1),
             document.getElementById('app')
     );
 </script>
