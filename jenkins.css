@@ -1,0 +1,265 @@
+/*
+    Styles for the pipeline result status displays used in both build/branch lists, and
+    within the PipelineGraph component.
+*/
+.result-status-glyph {
+    stroke: none;
+    fill: #fff;
+}
+.svgResultStatus.no-background .circle-bg {
+    opacity: 0;
+}
+.svgResultStatus {
+    transform: translateZ(0);
+}
+.svgResultStatus > circle {
+    stroke: white;
+    stroke-width: 2px;
+}
+.svgResultStatus > circle.success {
+    fill: #8cc04f;
+}
+.svgResultStatus > circle.failure {
+    fill: #d54c53;
+}
+.svgResultStatus > circle.unstable {
+    fill: #f6b44b;
+}
+.svgResultStatus > circle.aborted {
+    fill: #949393;
+}
+.svgResultStatus > circle.paused {
+    fill: #24b0d5;
+}
+.svgResultStatus > circle.unknown {
+    fill: #d54cc4;
+}
+.pipeline-node-selected .svgResultStatus > circle {
+    stroke: none;
+}
+.jdl-table td .svgResultStatus {
+    vertical-align: middle;
+}
+.progress-spinner.running circle {
+    fill: none;
+    stroke: #a7c7f2;
+}
+.progress-spinner.running path {
+    fill: none;
+    stroke: #1d7dcf;
+}
+.progress-spinner.pc-over-100 circle {
+    fill: none;
+    stroke: #1d7dcf;
+}
+.progress-spinner.pc-over-100 path {
+    fill: none;
+    stroke: #f6b44b;
+}
+.inverse .progress-spinner.running circle {
+    fill: none;
+    stroke: #4c9bd5;
+}
+.inverse .progress-spinner.running path {
+    fill: none;
+    stroke: white;
+}
+.inverse .progress-spinner.running circle.inner {
+    fill: #4c9bd5;
+    stroke: #4c9bd5;
+}
+.progress-spinner.running.spin {
+    animation: progress-spinner-rotate 4s linear;
+    animation-iteration-count: infinite;
+}
+@keyframes progress-spinner-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.progress-spinner circle.inner,
+.progress-spinner.running.spin circle.inner {
+    display: none;
+    animation: progress-spinner-pulsate 1.2s ease-out;
+    animation-iteration-count: infinite;
+    opacity: 0;
+}
+.progress-spinner.running circle.inner {
+    display: block;
+    fill: #4c9bd5;
+    stroke: #4c9bd5;
+}
+@keyframes progress-spinner-pulsate {
+    0% {
+        transform: scale(0.1, 0.1);
+        opacity: 0.0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.2, 1.2);
+        opacity: 0.0;
+    }
+}
+.progress-spinner.queued circle {
+    fill: none;
+    stroke: #949393;
+}
+.progress-spinner.queued circle.inner {
+    display: block;
+    fill: #949393;
+    stroke: #949393;
+}
+.empty-state-content svg {
+    vertical-align: middle;
+}
+.empty-state-content > span {
+    padding-left: 15px;
+}
+.progress-spinner.queued path {
+    fill: none;
+    stroke: none;
+}
+.progress-spinner.not_built circle,
+.progress-spinner.skipped circle {
+    fill: none;
+    stroke: #949393;
+}
+.progress-spinner.not_built path,
+.progress-spinner.skipped path {
+    fill: none;
+    stroke: none;
+}
+.result-bg.success {
+    background: #8cc04f;
+    border-bottom: 1px solid rgba(114, 162, 58, 0.5);
+}
+.result-bg.failure {
+    background: #d54c53;
+    border-bottom: 1px solid rgba(193, 45, 53, 0.5);
+}
+.result-bg.not_built,
+.result-bg.aborted,
+.result-bg.queued {
+    background: #949393;
+    border-bottom: 1px solid rgba(123, 121, 121, 0.5);
+}
+.result-bg.running {
+    background: #1d7dcf;
+    border-bottom: 1px solid rgba(23, 98, 162, 0.5);
+}
+.result-bg.unstable {
+    background: #f6b44b;
+    border-bottom: 1px solid rgba(244, 160, 26, 0.5);
+}
+.result-bg.paused {
+    background: #24b0d5;
+    border-bottom: 1px solid rgba(29, 140, 169, 0.5);
+}
+.result-bg.unknown {
+    background: #d54cc4;
+    border-bottom: 1px solid rgba(193, 45, 174, 0.5);
+}
+.result-item + .result-item .result-item-head {
+    border-top: 0;
+}
+.result-item-head {
+    display: flex;
+    align-items: stretch;
+    cursor: pointer;
+    border: solid 1px #e4e4e4;
+}
+.result-item-icon {
+    display: flex;
+    align-items: flex-start;
+    margin: -1px 0 -1px -1px;
+    transform: translateZ(0);
+}
+.result-item-icon .spinAnimation {
+    animation: progress-spinner-rotate 4s linear;
+    animation-iteration-count: infinite;
+}
+.result-item-title {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    min-width: 0;
+}
+.result-item-extra-info {
+    padding-right: 0.6em;
+}
+.result-item-label {
+    flex: 1 1 auto;
+    font-family: "LatoLatinWeb", "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.result-item-head:hover {
+    background: #f8f8f8;
+}
+.result-item-expando {
+    cursor: pointer;
+}
+.expando-glyph {
+    transform: rotate(0deg);
+    transition: transform 150ms ease-in;
+    fill: #4a4a4a;
+}
+.result-item-expando.expanded .expando-glyph {
+    transform: rotate(90deg);
+    transition: transform 150ms ease-in;
+}
+.result-item-expando.disabled .expando-glyph {
+    opacity: 0.3;
+}
+.result-item-children {
+    background-color: #333333;
+    color: #f5f5f5;
+    padding: 0.5em;
+    margin-bottom: 1px;
+    border-left: solid 28px #262626;
+}
+.slide-down-enter,
+.slide-down-appear {
+    max-height: 0;
+    overflow: hidden;
+}
+.slide-down-enter.slide-down-enter-active,
+.slide-down-appear.slide-down-appear-active {
+    max-height: 600px;
+    transition: all 300ms ease-in;
+}
+.slide-down-leave {
+    max-height: 600px;
+    overflow: hidden;
+}
+.slide-down-leave.slide-down-leave-active {
+    max-height: 0;
+    transition: all 300ms ease-out;
+}
+.pipeline-connector {
+    stroke: #949393;
+}
+.pipeline-node-terminal {
+    fill: #949393;
+}
+.pipeline-connector-skipped {
+    stroke: #949393;
+    stroke-opacity: 0.25;
+}
+.pipeline-small-label {
+    font-size: 80%;
+}
+.pipeline-big-label.selected,
+.pipeline-small-label.selected {
+    font-weight: bold;
+}
+.pipeline-selection-highlight circle {
+    fill: none;
+    stroke: #4a90e2;
+}
+.pipeline-selection-highlight circle.white-highlight {
+    stroke: white;
+}
