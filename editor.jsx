@@ -26,7 +26,7 @@ function RenderPipeline(data, scale, nodeClickCallback) {
             RenderLineElements(data),
             RenderNodeElements(data, nodeClickCallback),
         ),
-        RenderLabelElements(data),
+        RenderLabelElements(data, nodeClickCallback),
         scale
     )
 }
@@ -74,7 +74,7 @@ function RenderSvg(data, LineElements, NodeElements) {
 
 
 // return Label elements
-function RenderLabelElements(data) {
+function RenderLabelElements(data, nodeClickCallback) {
     let y_length = 0;
     for (let i = 0; i < data.length; i++) {
         if (data[i].actions.length > y_length) {
@@ -86,7 +86,7 @@ function RenderLabelElements(data) {
     let y_heigh = defaultLayout.ypStart + y_length * defaultLayout.nodeSpacingV + 2 * defaultLayout.nodeRadius - 68;
 
     let labels = data.map(function (stag, stag_index) {
-        let bigLabel = RenderBigLabel(y_heigh, 30 + (stag_index + 1) * 120, stag.name, (stag.actions.length != 1));
+        let bigLabel = RenderBigLabel(y_heigh, 30 + (stag_index + 1) * 120, stag.name, (stag.actions.length != 1), stag_index, nodeClickCallback);
         let smallLabels = stag.actions.map(function (action, action_index) {
             return RenderSmallLabel(30 + (stag_index + 1) * 120, 60 + action_index * 70, action.name);
         });
@@ -114,7 +114,7 @@ function RenderLabelElements(data) {
         </React.Fragment>)
 }
 
-function RenderBigLabel(y_heigh, x, title, parallel) {
+function RenderBigLabel(y_heigh, x, title, parallel, stag_index, clickCallback) {
     let parallelElement = null;
     if (parallel) {
         parallelElement = (<React.Fragment>
@@ -132,6 +132,9 @@ function RenderBigLabel(y_heigh, x, title, parallel) {
     }
     return (
         <div className="pipeline-big-label top-level-parallel"
+             onClick={function () {
+                 clickCallback(stag_index, -2)
+             }}
              style={{
                  width: "120px",
                  marginLeft: "-60px",
@@ -191,7 +194,9 @@ function RenderNodeElements(data, clickCallback) {
 
     return (<React.Fragment>
         {/*startNode*/}
-        <g transform="translate(30,60)" className="editor-graph-nodegroup">
+        <g onClick={function () {
+            clickCallback(-2, -2)
+        }} transform="translate(30,60)" className="editor-graph-nodegroup">
             <circle r="7.5" className="start-node" stroke="none"></circle>
             <circle r="18.9" cursor="pointer" className="pipeline-node-hittarget"
                     fillOpacity="0" stroke="none"></circle>

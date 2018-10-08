@@ -22,7 +22,7 @@ var defaultLayout = {
 // nodeClickCallback: call back on click node func(node_id)
 // Return: ReactElement
 function RenderPipeline(data, scale, nodeClickCallback) {
-    return RenderOutline(RenderSvg(data, RenderLineElements(data), RenderNodeElements(data, nodeClickCallback)), RenderLabelElements(data), scale);
+    return RenderOutline(RenderSvg(data, RenderLineElements(data), RenderNodeElements(data, nodeClickCallback)), RenderLabelElements(data, nodeClickCallback), scale);
 }
 
 // Render DIV outline
@@ -69,7 +69,7 @@ function RenderSvg(data, LineElements, NodeElements) {
 }
 
 // return Label elements
-function RenderLabelElements(data) {
+function RenderLabelElements(data, nodeClickCallback) {
     var y_length = 0;
     for (var i = 0; i < data.length; i++) {
         if (data[i].actions.length > y_length) {
@@ -81,7 +81,7 @@ function RenderLabelElements(data) {
     var y_heigh = defaultLayout.ypStart + y_length * defaultLayout.nodeSpacingV + 2 * defaultLayout.nodeRadius - 68;
 
     var labels = data.map(function (stag, stag_index) {
-        var bigLabel = RenderBigLabel(y_heigh, 30 + (stag_index + 1) * 120, stag.name, stag.actions.length != 1);
+        var bigLabel = RenderBigLabel(y_heigh, 30 + (stag_index + 1) * 120, stag.name, stag.actions.length != 1, stag_index, nodeClickCallback);
         var smallLabels = stag.actions.map(function (action, action_index) {
             return RenderSmallLabel(30 + (stag_index + 1) * 120, 60 + action_index * 70, action.name);
         });
@@ -114,7 +114,7 @@ function RenderLabelElements(data) {
     );
 }
 
-function RenderBigLabel(y_heigh, x, title, parallel) {
+function RenderBigLabel(y_heigh, x, title, parallel, stag_index, clickCallback) {
     var parallelElement = null;
     if (parallel) {
         parallelElement = React.createElement(
@@ -139,6 +139,9 @@ function RenderBigLabel(y_heigh, x, title, parallel) {
     return React.createElement(
         'div',
         { className: 'pipeline-big-label top-level-parallel',
+            onClick: function onClick() {
+                clickCallback(stag_index, -2);
+            },
             style: {
                 width: "120px",
                 marginLeft: "-60px",
@@ -206,7 +209,9 @@ function RenderNodeElements(data, clickCallback) {
         null,
         React.createElement(
             'g',
-            { transform: 'translate(30,60)', className: 'editor-graph-nodegroup' },
+            { onClick: function onClick() {
+                    clickCallback(-2, -2);
+                }, transform: 'translate(30,60)', className: 'editor-graph-nodegroup' },
             React.createElement('circle', { r: '7.5', className: 'start-node', stroke: 'none' }),
             React.createElement('circle', { r: '18.9', cursor: 'pointer', className: 'pipeline-node-hittarget',
                 fillOpacity: '0', stroke: 'none' })
