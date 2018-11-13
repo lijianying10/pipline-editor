@@ -231,7 +231,7 @@ function RunnerRenderNodeElements(data, clickCallback) {
 }
 
 function RunnerRenderSingleActionNode(x, y, stag_index, action_index, status, errors, clickCallback) {
-    if (status === "ok") {
+    if (status === "finish") {
         return React.createElement(
             'g',
             { transform: "translate(" + x + "," + y + ")", className: 'pipeline-node' },
@@ -262,7 +262,7 @@ function RunnerRenderSingleActionNode(x, y, stag_index, action_index, status, er
                 cursor: 'pointer' })
         );
     }
-    if (status === "running") {
+    if (status === "run") {
         return React.createElement(
             'g',
             { transform: "translate(" + x + "," + y + ")", className: 'pipeline-node' },
@@ -288,6 +288,9 @@ function RunnerRenderSingleActionNode(x, y, stag_index, action_index, status, er
     }
     var errorsNode = null;
     var classAppend = " " + status + " ";
+    if (status === "waiting") {
+        classAppend += " selected ";
+    }
     if (errors) {
         errorsNode = React.createElement(
             'svg',

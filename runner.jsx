@@ -216,7 +216,7 @@ function RunnerRenderNodeElements(data, clickCallback) {
 }
 
 function RunnerRenderSingleActionNode(x, y, stag_index, action_index, status, errors, clickCallback) {
-    if (status === "ok") {
+    if (status === "finish") {
         return (
             <g transform={"translate(" + x + "," + y + ")"} className="pipeline-node">
                 <g>
@@ -237,7 +237,7 @@ function RunnerRenderSingleActionNode(x, y, stag_index, action_index, status, er
             </g>
         )
     }
-    if (status === "running") {
+    if (status === "run") {
         return (
             <g transform={"translate(" + x + "," + y + ")"} className="pipeline-node">
                 <g>
@@ -259,6 +259,9 @@ function RunnerRenderSingleActionNode(x, y, stag_index, action_index, status, er
     }
     let errorsNode = null;
     let classAppend = " " + status + " ";
+    if (status === "waiting"){
+        classAppend+=" selected "
+    }
     if (errors) {
         errorsNode = (
             <svg className="alerticon" width="20px" height="20px" viewBox="13 9 20 20">
