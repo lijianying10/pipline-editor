@@ -87,12 +87,12 @@
     var callBackFunc = function (tstag_index, taction_index) {
         console.log("callback: ", tstag_index, taction_index);
         ReactDOM.render(
-                RenderPipeline(data, 1.4, callBackFunc, tstag_index, taction_index),
+                RunnerRenderPipeline(data, 1.4, callBackFunc, tstag_index, taction_index),
                 document.getElementById('app')
         );
     };
     ReactDOM.render(
-            RenderPipeline(data, 1.4, callBackFunc, -1, -1),
+            RunnerRenderPipeline(data, 1.4, callBackFunc, -1, -1),
             document.getElementById('app')
     );
 </script>

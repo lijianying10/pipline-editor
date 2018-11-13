@@ -1,6 +1,6 @@
 'use strict';
 
-var defaultLayout = {
+var runnerdefaultLayout = {
     nodeSpacingH: 120,
     nodeSpacingV: 70,
     nodeRadius: 12.5,
@@ -21,13 +21,13 @@ var defaultLayout = {
 // scale: svg scale
 // nodeClickCallback: call back on click node func(node_id)
 // Return: ReactElement
-function RenderPipeline(data, scale, nodeClickCallback, sel_stag_index, sel_action_index) {
-    return RenderOutline(RenderSvg(data, RenderLineElements(data), RenderSelection(sel_stag_index, sel_action_index), RenderNodeElements(data, nodeClickCallback)), RenderLabelElements(data), scale);
+function RunnerRenderPipeline(data, scale, nodeClickCallback, sel_stag_index, sel_action_index) {
+    return RunnerRenderOutline(RunnerRenderSvg(data, RunnerRenderLineElements(data), RunnerRenderSelection(sel_stag_index, sel_action_index), RunnerRenderNodeElements(data, nodeClickCallback)), RunnerRenderLabelElements(data), scale);
 }
 
 // Render DIV outline
 // svg: input svg react element
-function RenderOutline(svg, label, scale) {
+function RunnerRenderOutline(svg, label, scale) {
     var divStyle = {
         position: 'relative',
         overflow: 'visible',
@@ -50,16 +50,16 @@ function RenderOutline(svg, label, scale) {
 // Input: react element array
 // combine all element in svgContainer
 // Return: svg element
-function RenderSvg(data, HighLight, LineElements, NodeElements) {
+function RunnerRenderSvg(data, HighLight, LineElements, NodeElements) {
     // +2 means : start and tail place holder
-    var x_length = 0.5 * defaultLayout.nodeSpacingH + (data.length + 1) * defaultLayout.nodeSpacingH;
+    var x_length = 0.5 * runnerdefaultLayout.nodeSpacingH + (data.length + 1) * runnerdefaultLayout.nodeSpacingH;
     var y_length = 0;
     for (var i = 0; i < data.length; i++) {
         if (data[i].actions.length > y_length) {
             y_length = data[i].actions.length;
         }
     }
-    y_length = defaultLayout.ypStart + y_length * defaultLayout.nodeSpacingV + 2 * defaultLayout.nodeRadius;
+    y_length = runnerdefaultLayout.ypStart + y_length * runnerdefaultLayout.nodeSpacingV + 2 * runnerdefaultLayout.nodeRadius;
     return React.createElement(
         'svg',
         { className: 'editor-graph-svg', width: x_length.toString(), height: y_length.toString() },
@@ -69,7 +69,7 @@ function RenderSvg(data, HighLight, LineElements, NodeElements) {
     );
 }
 
-function RenderSelection(stag_index, action_index) {
+function RunnerRenderSelection(stag_index, action_index) {
     if (stag_index === -1 || action_index === -1) {
         return null;
     }
@@ -83,7 +83,7 @@ function RenderSelection(stag_index, action_index) {
 }
 
 // return Label elements
-function RenderLabelElements(data) {
+function RunnerRenderLabelElements(data) {
     var y_length = 0;
     for (var i = 0; i < data.length; i++) {
         if (data[i].actions.length > y_length) {
@@ -92,12 +92,12 @@ function RenderLabelElements(data) {
     }
 
     // big label bottom value
-    var y_heigh = defaultLayout.ypStart + y_length * defaultLayout.nodeSpacingV + 2 * defaultLayout.nodeRadius - 68;
+    var y_heigh = runnerdefaultLayout.ypStart + y_length * runnerdefaultLayout.nodeSpacingV + 2 * runnerdefaultLayout.nodeRadius - 68;
 
     var labels = data.map(function (stag, stag_index) {
-        var bigLabel = RenderBigLabel(y_heigh, 30 + (stag_index + 1) * 120, stag.name, stag.actions.length != 1);
+        var bigLabel = RunnerRenderBigLabel(y_heigh, 30 + (stag_index + 1) * 120, stag.name, stag.actions.length != 1);
         var smallLabels = stag.actions.map(function (action, action_index) {
-            return RenderSmallLabel(30 + (stag_index + 1) * 120, 60 + action_index * 70, action.name);
+            return RunnerRenderSmallLabel(30 + (stag_index + 1) * 120, 60 + action_index * 70, action.name);
         });
         return React.createElement(
             React.Fragment,
@@ -142,7 +142,7 @@ function RenderLabelElements(data) {
     );
 }
 
-function RenderBigLabel(y_heigh, x, title, parallel) {
+function RunnerRenderBigLabel(y_heigh, x, title, parallel) {
     var parallelElement = null;
     if (parallel) {
         parallelElement = React.createElement(
@@ -178,7 +178,7 @@ function RenderBigLabel(y_heigh, x, title, parallel) {
     );
 }
 
-function RenderSmallLabel(x, y, title) {
+function RunnerRenderSmallLabel(x, y, title) {
     return React.createElement(
         'div',
         { className: 'pipeline-small-label',
@@ -196,10 +196,10 @@ function RenderSmallLabel(x, y, title) {
 }
 
 // return Node elements
-function RenderNodeElements(data, clickCallback) {
+function RunnerRenderNodeElements(data, clickCallback) {
     var stagNodes = data.map(function (stag, stag_index) {
         var nodes = stag.actions.map(function (action, action_index) {
-            return RenderSingleActionNode(30 + (stag_index + 1) * 120, 60 + action_index * 70, stag_index, action_index, action.state, action.error, clickCallback);
+            return RunnerRenderSingleActionNode(30 + (stag_index + 1) * 120, 60 + action_index * 70, stag_index, action_index, action.state, action.error, clickCallback);
         });
         return React.createElement(
             React.Fragment,
@@ -230,7 +230,7 @@ function RenderNodeElements(data, clickCallback) {
     );
 }
 
-function RenderSingleActionNode(x, y, stag_index, action_index, status, errors, clickCallback) {
+function RunnerRenderSingleActionNode(x, y, stag_index, action_index, status, errors, clickCallback) {
     if (status === "ok") {
         return React.createElement(
             'g',
@@ -355,16 +355,16 @@ function RenderSingleActionNode(x, y, stag_index, action_index, status, errors, 
 }
 
 // return Line elements
-function RenderLineElements(data) {
+function RunnerRenderLineElements(data) {
     return React.createElement(
         React.Fragment,
         null,
-        RenderStraightLineElements(data),
-        RenderActionLineElements(data)
+        RunnerRenderStraightLineElements(data),
+        RunnerRenderActionLineElements(data)
     );
 }
 
-function RenderStraightLineElements(data) {
+function RunnerRenderStraightLineElements(data) {
     var lines = data.map(function (stag, index) {
         var x_end = 30 + (index + 1) * 120;
         var x_start = x_end - 120;
@@ -382,7 +382,7 @@ function RenderStraightLineElements(data) {
     );
 }
 
-function RenderActionLineElements(data) {
+function RunnerRenderActionLineElements(data) {
     var stagLines = data.map(function (stag, index) {
         var x_start = 30 + index * 120;
         var y_start = 60;
