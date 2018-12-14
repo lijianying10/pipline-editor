@@ -25,7 +25,7 @@ function RunnerRenderPipeline(data, scale, nodeClickCallback, sel_stag_index, se
             data,
             RunnerRenderLineElements(data),
             RunnerRenderSelection(sel_stag_index, sel_action_index),
-            RunnerRenderNodeElements(data, nodeClickCallback),
+            RunnerRenderNodeElements(data, nodeClickCallback)
         ),
         RunnerRenderLabelElements(data),
         scale
@@ -200,7 +200,9 @@ function RunnerRenderNodeElements(data, clickCallback) {
 
     return (<React.Fragment>
         {/*startNode*/}
-        <g transform="translate(30,60)" className="editor-graph-nodegroup">
+        <g onClick={function () {
+            clickCallback(-2, -2)
+        }} transform="translate(30,60)" className="editor-graph-nodegroup">
             <circle r="7.5" className="start-node" stroke="none"></circle>
             <circle r="18.9" cursor="pointer" className="pipeline-node-hittarget"
                     fillOpacity="0" stroke="none"></circle>

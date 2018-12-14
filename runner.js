@@ -213,7 +213,9 @@ function RunnerRenderNodeElements(data, clickCallback) {
         null,
         React.createElement(
             'g',
-            { transform: 'translate(30,60)', className: 'editor-graph-nodegroup' },
+            { onClick: function onClick() {
+                    clickCallback(-2, -2);
+                }, transform: 'translate(30,60)', className: 'editor-graph-nodegroup' },
             React.createElement('circle', { r: '7.5', className: 'start-node', stroke: 'none' }),
             React.createElement('circle', { r: '18.9', cursor: 'pointer', className: 'pipeline-node-hittarget',
                 fillOpacity: '0', stroke: 'none' })
